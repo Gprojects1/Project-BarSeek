@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd68da1c-71a4-4c90-8a22-6b93a2b5cdd5" name="Changes" comment="" />
+    <list default="true" id="b36ec070-a657-4f49-b774-5d27547f95b7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,10 +20,10 @@
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
-  <component name="ProjectId" id="2scXzfi3MKrCU2DqlVBFc1IhbI0" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2scWTB16STn6LArsteYtiCCs9Cy" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -34,17 +34,17 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/79258/ProjectBarSeek/barseek-bar-service"
+    "last_opened_file_path": "C:/Users/79258/ProjectBarSeek/barseek-api-gateway"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fd68da1c-71a4-4c90-8a22-6b93a2b5cdd5" name="Changes" comment="" />
-      <created>1738756100426</created>
+      <changelist id="b36ec070-a657-4f49-b774-5d27547f95b7" name="Changes" comment="" />
+      <created>1738755349318</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1738756100426</updated>
+      <updated>1738755349318</updated>
     </task>
     <servers />
   </component>
