@@ -2,15 +2,17 @@ package com.example.barseek_bar_mservice.model;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.internal.build.AllowNonPortable;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "drinks")
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
 
 public class Drink {
     @Id

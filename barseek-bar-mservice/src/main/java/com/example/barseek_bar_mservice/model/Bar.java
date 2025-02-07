@@ -12,8 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "bars")
 @Data
-@RequiredArgsConstructor
-
+@AllArgsConstructor
 
 public class Bar {
     @Id

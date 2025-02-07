@@ -6,12 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class DrinkService {
 
     private final DrinkRepository drinkRepository;
 
-    public DrinkService(DrinkRepository drinkRepository) {
-        this.drinkRepository = drinkRepository;
-    }
 }

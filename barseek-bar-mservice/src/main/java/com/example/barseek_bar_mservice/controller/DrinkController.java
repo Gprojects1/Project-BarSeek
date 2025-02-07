@@ -7,13 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-//@RequiredArgsConstructor
-@RequestMapping("bar-service-api/drinks/v1")
+@RequiredArgsConstructor
+@RequestMapping("drink-service-api/v1")
 public class DrinkController {
 
     private final DrinkService drinkService;
 
-    public DrinkController(DrinkService drinkService) {
-        this.drinkService = drinkService;
-    }
 }
