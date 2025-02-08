@@ -22,6 +22,7 @@ public class BarService {
     }
 
     public Bar findBarById(Long id) {
+        // кастом
         return barRepository.findById(id).orElse(null);
     }
 
@@ -30,10 +31,12 @@ public class BarService {
     }
 
     public void deleteBarById(Long id) {
+        // переделать , тут проверять если бар с айдишником . если нет -> кастом екс.
         barRepository.deleteById(id);
     }
 
     public void updateBarById(Bar updatedBar) {
+        // см метод выше.
         deleteBarById(updatedBar.getId());
         addNewBar(updatedBar);
     }

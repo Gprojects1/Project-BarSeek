@@ -18,7 +18,7 @@ public class DrinkController {
     private final DrinkService drinkService;
 
     @PostMapping("/{barId}/drinks")
-    public ResponseEntity<String> addNew(@PathVariable("barId") Long barId,@RequestBody Drink drink) {
+    public ResponseEntity<String> addNew(@PathVariable("barId") Long barId, @RequestBody Drink drink) {
         try {
             Optional<Drink> newDrink = drinkService.addNewDrink(barId,drink);
             return newDrink.map(value -> new ResponseEntity<>("New drink created with name : " + value.getName(), HttpStatus.CREATED)).

@@ -20,6 +20,7 @@ public class DrinkService {
     public Optional<Drink> addNewDrink(Long barId, Drink drink) {
         Optional<Bar> bar = barRepository.findById(barId);
         if(bar.isEmpty()) return Optional.empty();
+        // если бар пустой можно бросать кастомное исключение .
         drink.setBar(bar.get());
         return Optional.of(drinkRepository.save(drink));
     }
