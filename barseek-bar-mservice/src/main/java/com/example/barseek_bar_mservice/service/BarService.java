@@ -16,8 +16,9 @@ public class BarService {
 
     private final BarRepository barRepository;
 
-    public void addNewBar(Bar bar) {
-        barRepository.save(bar);
+
+    public Bar addNewBar(Bar bar) {
+        return barRepository.save(bar);
     }
 
     public Bar findBarById(Long id) {

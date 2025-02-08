@@ -21,12 +21,11 @@ public class BarController {
     @PostMapping("/bars")
     public ResponseEntity<String> addNew(@RequestBody Bar bar) {
         try{
-            barService.addNewBar(bar);
+            Bar newBar = barService.addNewBar(bar);
+            return new ResponseEntity<>("New bar created with name" + newBar.getName(),HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("New bar created with name" + bar.getName(),HttpStatus.CREATED);
-
     }
 
     @GetMapping("/bars/{barId}")
