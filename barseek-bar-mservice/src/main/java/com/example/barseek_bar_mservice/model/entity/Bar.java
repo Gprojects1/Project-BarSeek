@@ -1,10 +1,10 @@
-package com.example.barseek_bar_mservice.model;
+package com.example.barseek_bar_mservice.model.entity;
 
 
+import com.example.barseek_bar_mservice.model.types.BarType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;

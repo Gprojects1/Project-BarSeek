@@ -1,14 +1,15 @@
 package com.example.barseek_bar_mservice.service;
 
 
-import com.example.barseek_bar_mservice.model.Bar;
+import com.example.barseek_bar_mservice.exception.customExceptions.BarNotFoundException;
+import com.example.barseek_bar_mservice.exception.customExceptions.InvalidDataException;
+import com.example.barseek_bar_mservice.model.entity.Bar;
 import com.example.barseek_bar_mservice.repository.BarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,26 +19,33 @@ public class BarService {
 
 
     public Bar addNewBar(Bar bar) {
+        if(bar.getName() == null || bar.getName().isEmpty()) {
+            throw new InvalidDataException("Bar can not have an empty name!");
+        }
         return barRepository.save(bar);
     }
 
     public Bar findBarById(Long id) {
-        // кастом
-        return barRepository.findById(id).orElse(null);
+        return barRepository.findById(id).
+                orElseThrow(() -> new BarNotFoundException("bar does not exists, id : " + id));
     }
 
     public List<Bar> findBarByName(String name) {
+        if(name == null || name.isEmpty()) {
+            throw new InvalidDataException("The name is empty!");
+        }
         return barRepository.findAllByName(name).orElse(new ArrayList<>());
     }
 
     public void deleteBarById(Long id) {
-        // переделать , тут проверять если бар с айдишником . если нет -> кастом екс.
+        Bar exBar = findBarById(id);
         barRepository.deleteById(id);
     }
 
-    public void updateBarById(Bar updatedBar) {
-        // см метод выше.
-        deleteBarById(updatedBar.getId());
+    public void updateBarById(Long id, Bar updatedBar) {
+        Bar exBar = findBarById(id);
+        updatedBar.setId(exBar.getId());
+        deleteBarById(id);
         addNewBar(updatedBar);
     }
 

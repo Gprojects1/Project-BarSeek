@@ -1,6 +1,6 @@
 package com.example.barseek_bar_mservice.repository;
 
-import com.example.barseek_bar_mservice.model.Bar;
+import com.example.barseek_bar_mservice.model.entity.Bar;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

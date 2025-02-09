@@ -1,11 +1,11 @@
-package com.example.barseek_bar_mservice.model;
+package com.example.barseek_bar_mservice.model.entity;
 
 
+import com.example.barseek_bar_mservice.model.types.DrinkSaleStatus;
+import com.example.barseek_bar_mservice.model.types.DrinkType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import org.hibernate.internal.build.AllowNonPortable;
 
 import java.time.LocalDateTime;
 

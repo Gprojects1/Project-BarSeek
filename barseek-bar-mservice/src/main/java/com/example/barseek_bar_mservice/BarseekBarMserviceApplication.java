@@ -1,6 +1,5 @@
 package com.example.barseek_bar_mservice;
 
-import com.example.barseek_bar_mservice.model.Bar;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
