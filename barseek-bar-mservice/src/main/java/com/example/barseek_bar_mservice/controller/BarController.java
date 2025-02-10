@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("bar-service-api/v1")
+@RequestMapping("/bar-service-api/v1")
 public class BarController {
 
     private final BarService barService;
@@ -21,7 +21,7 @@ public class BarController {
     public ResponseEntity<String> addNew(@RequestBody Bar bar) {
 
             Bar newBar = barService.addNewBar(bar);
-            return new ResponseEntity<>("New bar created with name" + newBar.getName(),HttpStatus.CREATED);
+            return new ResponseEntity<>("New bar created with name : " + newBar.getName(),HttpStatus.CREATED);
 
     }
 
@@ -54,8 +54,8 @@ public class BarController {
     @PutMapping("/bars/{barId}")
     public ResponseEntity<String> updateById(@PathVariable("barId") Long id,@RequestBody Bar updatedBar) {
 
-            barService.updateBarById(id, updatedBar);
-            return new ResponseEntity<>("Bar was updated and saved, id : " + updatedBar.getId(), HttpStatus.OK);
+            Bar newBar = barService.updateBarById(id, updatedBar);
+            return new ResponseEntity<>("Bar was updated and saved, name : " + newBar.getName(), HttpStatus.OK);
 
     }
 

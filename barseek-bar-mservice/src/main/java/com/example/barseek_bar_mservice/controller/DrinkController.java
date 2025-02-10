@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("drink-service-api/v1")
+@RequestMapping("/drink-service-api/v1")
 public class DrinkController {
 
     private final DrinkService drinkService;
@@ -47,6 +47,18 @@ public class DrinkController {
             return drinks.isEmpty() ?
                     new ResponseEntity("No drinks found", HttpStatus.NO_CONTENT) :
                     ResponseEntity.ok(drinks);
+
+    }
+
+    @PutMapping("/{barId}/drinks/{drinkId}")
+    public ResponseEntity<String> updateById(
+            @PathVariable("barId") Long barId,
+            @PathVariable("drinkId") Long drinkId,
+            @RequestBody Drink updatedDrink
+    ) {
+
+            Drink newDrink = drinkService.updateDrinkById(barId,drinkId,updatedDrink);
+            return new ResponseEntity<>("Drink was saved and updated, name : " + newDrink.getName(),HttpStatus.OK);
 
     }
 

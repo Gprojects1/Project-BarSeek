@@ -42,11 +42,11 @@ public class BarService {
         barRepository.deleteById(id);
     }
 
-    public void updateBarById(Long id, Bar updatedBar) {
+    public Bar updateBarById(Long id, Bar updatedBar) {
         Bar exBar = findBarById(id);
         updatedBar.setId(exBar.getId());
-        deleteBarById(id);
-        addNewBar(updatedBar);
+        barRepository.deleteById(id);
+        return addNewBar(updatedBar);
     }
 
 }

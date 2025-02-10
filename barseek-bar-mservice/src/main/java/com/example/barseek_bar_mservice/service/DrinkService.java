@@ -29,7 +29,6 @@ public class DrinkService {
         }
 
         Bar bar = barService.findBarById(barId);
-
         drink.setBar(bar);
         return drinkRepository.save(drink);
     }
@@ -46,15 +45,25 @@ public class DrinkService {
     public void deleteDrinkById(Long barId, Long drinkId) {
 
         Drink drink = findDrinkById(drinkId,barId);
-
         drinkRepository.deleteByBarIdAndId(barId,drinkId);
+
     }
 
     public List<Drink> findAllDrinksByBarId(Long id) {
 
         Bar bar = barService.findBarById(id);
-
         return drinkRepository.findAllByBarId(id).orElse(new ArrayList<>());
+
+    }
+
+
+    public Drink updateDrinkById(Long barId, Long drinkId, Drink updatedDrink) {
+
+        Drink exDrink = findDrinkById(drinkId,barId);
+        updatedDrink.setId(exDrink.getId());
+        drinkRepository.deleteByBarIdAndId(barId,drinkId);
+        return addNewDrink(barId,updatedDrink);
+
     }
 }
 
