@@ -1,6 +1,7 @@
 package com.example.barseek_bar_mservice.controller;
 
 
+import com.example.barseek_bar_mservice.model.entity.Bar;
 import com.example.barseek_bar_mservice.model.entity.Drink;
 import com.example.barseek_bar_mservice.service.DrinkService;
 import lombok.RequiredArgsConstructor;
@@ -60,6 +61,14 @@ public class DrinkController {
             Drink newDrink = drinkService.updateDrinkById(barId,drinkId,updatedDrink);
             return new ResponseEntity<>("Drink was saved and updated, name : " + newDrink.getName(),HttpStatus.OK);
 
+    }
+
+    // получить бар по коктейлю
+    @GetMapping("/{drinkId}/bar")
+    public ResponseEntity<Bar> findBarByDrinkId(@PathVariable("drinkId") Long id) {
+
+            Bar bar = drinkService.findBarByDrinkId(id);
+            return ResponseEntity.ok(bar);
     }
 
 

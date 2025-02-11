@@ -65,6 +65,15 @@ public class DrinkService {
         return addNewDrink(barId,updatedDrink);
 
     }
+
+    public Bar findBarByDrinkId(Long id) {
+
+        Drink drink = drinkRepository.findById(id).
+                orElseThrow(() -> new DrinkNotFoundException("No drink with given id!"));
+
+        return drink.getBar();
+
+    }
 }
 
 // получить бар по коктелю => в дринк сервис

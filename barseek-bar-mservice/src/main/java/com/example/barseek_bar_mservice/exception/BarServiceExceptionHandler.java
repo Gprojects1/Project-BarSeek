@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.security.DigestException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @ControllerAdvice
 public class BarServiceExceptionHandler {
