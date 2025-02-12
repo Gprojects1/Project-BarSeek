@@ -4,6 +4,7 @@ package com.example.barseek_bar_mservice.service;
 import com.example.barseek_bar_mservice.exception.customExceptions.BarNotFoundException;
 import com.example.barseek_bar_mservice.exception.customExceptions.InvalidDataException;
 import com.example.barseek_bar_mservice.model.entity.Bar;
+import com.example.barseek_bar_mservice.model.entity.Drink;
 import com.example.barseek_bar_mservice.repository.BarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -49,4 +50,8 @@ public class BarService {
         return addNewBar(updatedBar);
     }
 
+    public List<Drink> findAllDrinksById(Long id) {
+        Bar bar = findBarById(id);
+        return bar.getDrinks();
+    }
 }

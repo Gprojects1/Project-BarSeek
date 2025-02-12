@@ -1,17 +1,33 @@
 server:
   port: 8081
+#spring:
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:8081/admin
+#      context-path: /admin
+#
+#
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include=health,info,metrics:
+#        include: "*"
 spring:
-  boot:
-    admin:
-      client:
-        url: http://localhost:8081/admin
-      context-path: /admin
-
-
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include=health,info,metrics:
-        include: "*"
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: bar-service-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: com.example.barseek_bar_mservice.kafka.events

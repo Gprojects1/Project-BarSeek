@@ -5,6 +5,7 @@ import com.example.barseek_bar_mservice.model.entity.Bar;
 import com.example.barseek_bar_mservice.model.entity.Drink;
 import com.example.barseek_bar_mservice.service.DrinkService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.Optional;
 @RequestMapping("/drink-service-api/v1")
 public class DrinkController {
 
+    //@Autowired
     private final DrinkService drinkService;
 
     @PostMapping("/{barId}/drinks")
@@ -41,6 +43,7 @@ public class DrinkController {
             return new ResponseEntity<>("Drink was deleted id :" + drinkId,HttpStatus.OK);
     }
 
+    @Deprecated
     @GetMapping("/{barId}/drinks")
     public ResponseEntity<List<Drink>> findAllByBarId(@PathVariable("barId") Long id) {
 

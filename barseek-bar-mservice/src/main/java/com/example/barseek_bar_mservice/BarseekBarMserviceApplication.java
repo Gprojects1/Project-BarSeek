@@ -11,3 +11,5 @@ public class BarseekBarMserviceApplication {
 	}
 
 }
+
+// добавить логику отправки в кафку в сервисах

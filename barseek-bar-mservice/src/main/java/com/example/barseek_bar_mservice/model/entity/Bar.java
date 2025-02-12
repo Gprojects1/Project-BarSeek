@@ -8,6 +8,7 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "bars")
@@ -28,7 +29,7 @@ public class Bar {
     @Column(name = "last_update")
     private LocalDateTime updatedAt;
     @Column(name = "owner_id")
-    private Long ownerId;
+    private UUID ownerId;
     @Column(name = "type")
     private BarType type;
 
