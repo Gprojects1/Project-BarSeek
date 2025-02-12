@@ -9,5 +9,5 @@ import lombok.Data;
 public class DrinkCreatedEvent {
     private Long drinkId;
     private String name;
-    private String barId;
+    private Long barId;
 }
