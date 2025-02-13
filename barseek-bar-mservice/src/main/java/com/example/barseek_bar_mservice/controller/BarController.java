@@ -21,7 +21,8 @@ public class BarController {
     @PostMapping
     public ResponseEntity<String> addNew(@RequestBody Bar bar) {
 
-            Bar newBar = barService.addNewBar(bar);
+            Long ownerId;
+            Bar newBar = barService.addNewBar(bar,ownerId);
             return new ResponseEntity<>("New bar created with name : " + newBar.getName(),HttpStatus.CREATED);
 
     }
@@ -47,7 +48,8 @@ public class BarController {
     @DeleteMapping("/{barId}")
     public ResponseEntity<String> deleteById(@PathVariable("barId") Long id) {
 
-            barService.deleteBarById(id);
+            Long ownerId;
+            barService.deleteBarById(id,ownerId);
             return new ResponseEntity<>("Bar was deleted, id : " + id, HttpStatus.OK);
 
     }
@@ -55,7 +57,8 @@ public class BarController {
     @PutMapping("/{barId}")
     public ResponseEntity<String> updateById(@PathVariable("barId") Long id,@RequestBody Bar updatedBar) {
 
-            Bar newBar = barService.updateBarById(id, updatedBar);
+            Long ownerId;
+            Bar newBar = barService.updateBarById(id, updatedBar, ownerId);
             return new ResponseEntity<>("Bar was updated and saved, name : " + newBar.getName(), HttpStatus.OK);
 
     }

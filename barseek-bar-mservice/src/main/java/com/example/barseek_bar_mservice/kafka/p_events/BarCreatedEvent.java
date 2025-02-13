@@ -12,5 +12,5 @@ public class BarCreatedEvent {
     private Long barId;
     private String name;
     private String address;
-    private UUID ownerId;
+    private Long ownerId;
 }

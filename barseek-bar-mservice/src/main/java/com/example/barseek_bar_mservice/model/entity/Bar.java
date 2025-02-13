@@ -29,7 +29,7 @@ public class Bar {
     @Column(name = "last_update")
     private LocalDateTime updatedAt;
     @Column(name = "owner_id")
-    private UUID ownerId;
+    private Long ownerId;
     @Column(name = "type")
     private BarType type;
 

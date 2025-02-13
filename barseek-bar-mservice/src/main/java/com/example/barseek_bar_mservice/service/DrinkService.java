@@ -9,6 +9,7 @@ import com.example.barseek_bar_mservice.kafka.p_events.DrinkUpdatedEvent;
 import com.example.barseek_bar_mservice.kafka.producer.KafkaDrinkProducerService;
 import com.example.barseek_bar_mservice.model.entity.Bar;
 import com.example.barseek_bar_mservice.model.entity.Drink;
+import com.example.barseek_bar_mservice.model.entity.Owner;
 import com.example.barseek_bar_mservice.repository.BarRepository;
 import com.example.barseek_bar_mservice.repository.DrinkRepository;
 import jakarta.transaction.Transactional;
@@ -26,11 +27,13 @@ public class DrinkService {
     private final DrinkRepository drinkRepository;
 
     private final BarService barService;
-
     private final KafkaDrinkProducerService kafkaDrinkProducerService;
+    private final OwnerService ownerService;
 
     @Transactional
-    public Drink addNewDrink(Long barId, Drink drink) {
+    public Drink addNewDrink(Long barId, Drink drink, Long ownerId) {
+
+        Owner owner = ownerService.findOwnerById(ownerId);
 
         if(drink.getName() == null || drink.getName().isEmpty()) {
             throw new InvalidDataException("Drink can not have an empty name!");
@@ -60,7 +63,9 @@ public class DrinkService {
 
 
     @Transactional
-    public void deleteDrinkById(Long barId, Long drinkId) {
+    public void deleteDrinkById(Long barId, Long drinkId, Long ownerId) {
+
+        Owner owner = ownerService.findOwnerById(ownerId);
 
         Drink drink = findDrinkById(drinkId,barId);
 
@@ -83,7 +88,9 @@ public class DrinkService {
     }
 
     @Transactional
-    public Drink updateDrinkById(Long barId, Long drinkId, Drink updatedDrink) {
+    public Drink updateDrinkById(Long barId, Long drinkId, Drink updatedDrink, Long ownerId) {
+
+        Owner owner = ownerService.findOwnerById(ownerId);
 
         Drink exDrink = findDrinkById(drinkId,barId);
         updatedDrink.setId(exDrink.getId());

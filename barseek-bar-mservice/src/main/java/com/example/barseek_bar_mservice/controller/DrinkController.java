@@ -24,7 +24,8 @@ public class DrinkController {
     @PostMapping("/{barId}/drinks")
     public ResponseEntity<String> addNew(@PathVariable("barId") Long barId, @RequestBody Drink drink) {
 
-            Drink newDrink = drinkService.addNewDrink(barId,drink);
+            Long ownerId;
+            Drink newDrink = drinkService.addNewDrink(barId,drink,ownerId);
             return new ResponseEntity<>("New drink created with name : " + newDrink.getName(),HttpStatus.CREATED);
 
     }
@@ -39,7 +40,8 @@ public class DrinkController {
     @DeleteMapping("/{barId}/drinks/{drinkId}")
     public ResponseEntity<String> deleteById(@PathVariable("barId") Long barId,@PathVariable("drinkId") Long drinkId) {
 
-            drinkService.deleteDrinkById(barId,drinkId);
+            Long ownerId;
+            drinkService.deleteDrinkById(barId,drinkId,ownerId);
             return new ResponseEntity<>("Drink was deleted id :" + drinkId,HttpStatus.OK);
     }
 
@@ -61,7 +63,8 @@ public class DrinkController {
             @RequestBody Drink updatedDrink
     ) {
 
-            Drink newDrink = drinkService.updateDrinkById(barId,drinkId,updatedDrink);
+            Long ownerId;
+            Drink newDrink = drinkService.updateDrinkById(barId,drinkId,updatedDrink,ownerId);
             return new ResponseEntity<>("Drink was saved and updated, name : " + newDrink.getName(),HttpStatus.OK);
 
     }

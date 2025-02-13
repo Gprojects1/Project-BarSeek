@@ -1,10 +1,7 @@
 package com.example.barseek_bar_mservice.exception;
 
 
-import com.example.barseek_bar_mservice.exception.customExceptions.BarNotFoundException;
-import com.example.barseek_bar_mservice.exception.customExceptions.DrinkNotFoundException;
-import com.example.barseek_bar_mservice.exception.customExceptions.InvalidDataException;
-import com.example.barseek_bar_mservice.exception.customExceptions.UnauthorizedAccessException;
+import com.example.barseek_bar_mservice.exception.customExceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,6 +22,11 @@ public class BarServiceExceptionHandler {
 
     @ExceptionHandler(DrinkNotFoundException.class)
     public ResponseEntity<String> handleDrinkNotFound(DrinkNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(OwnerNotFoundException.class)
+    public ResponseEntity<String> handleOwnerNotFound(OwnerNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
