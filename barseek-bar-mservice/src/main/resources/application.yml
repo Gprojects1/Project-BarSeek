@@ -31,3 +31,9 @@ spring:
           json:
             trusted:
               packages: com.example.barseek_bar_mservice.kafka.events
+
+security:
+  jwt:
+    token:
+      secret-key: secret-key
+      expire-length: 300000

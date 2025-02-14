@@ -3,11 +3,13 @@ package com.example.barseek_bar_mservice.controller;
 
 import com.example.barseek_bar_mservice.model.entity.Bar;
 import com.example.barseek_bar_mservice.model.entity.Drink;
+import com.example.barseek_bar_mservice.security.UserPrincipal;
 import com.example.barseek_bar_mservice.service.DrinkService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,9 +24,11 @@ public class DrinkController {
     private final DrinkService drinkService;
 
     @PostMapping("/{barId}/drinks")
-    public ResponseEntity<String> addNew(@PathVariable("barId") Long barId, @RequestBody Drink drink) {
+    public ResponseEntity<String> addNew(@PathVariable("barId") Long barId,
+                                         @RequestBody Drink drink,
+                                         @AuthenticationPrincipal UserPrincipal principal) {
 
-            Long ownerId;
+            Long ownerId = Long.parseLong(principal.getUsername());
             Drink newDrink = drinkService.addNewDrink(barId,drink,ownerId);
             return new ResponseEntity<>("New drink created with name : " + newDrink.getName(),HttpStatus.CREATED);
 
@@ -38,11 +42,14 @@ public class DrinkController {
     }
 
     @DeleteMapping("/{barId}/drinks/{drinkId}")
-    public ResponseEntity<String> deleteById(@PathVariable("barId") Long barId,@PathVariable("drinkId") Long drinkId) {
+    public ResponseEntity<String> deleteById(@PathVariable("barId") Long barId,
+                                             @PathVariable("drinkId") Long drinkId,
+                                             @AuthenticationPrincipal UserPrincipal principal) {
 
-            Long ownerId;
+            Long ownerId = Long.parseLong(principal.getUsername());
             drinkService.deleteDrinkById(barId,drinkId,ownerId);
             return new ResponseEntity<>("Drink was deleted id :" + drinkId,HttpStatus.OK);
+
     }
 
     @Deprecated
@@ -60,10 +67,11 @@ public class DrinkController {
     public ResponseEntity<String> updateById(
             @PathVariable("barId") Long barId,
             @PathVariable("drinkId") Long drinkId,
-            @RequestBody Drink updatedDrink
+            @RequestBody Drink updatedDrink,
+            @AuthenticationPrincipal UserPrincipal principal
     ) {
 
-            Long ownerId;
+            Long ownerId = Long.parseLong(principal.getUsername());
             Drink newDrink = drinkService.updateDrinkById(barId,drinkId,updatedDrink,ownerId);
             return new ResponseEntity<>("Drink was saved and updated, name : " + newDrink.getName(),HttpStatus.OK);
 

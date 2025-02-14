@@ -3,10 +3,12 @@ package com.example.barseek_bar_mservice.controller;
 
 import com.example.barseek_bar_mservice.model.entity.Bar;
 import com.example.barseek_bar_mservice.model.entity.Drink;
+import com.example.barseek_bar_mservice.security.UserPrincipal;
 import com.example.barseek_bar_mservice.service.BarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,9 +21,10 @@ public class BarController {
     private final BarService barService;
 
     @PostMapping
-    public ResponseEntity<String> addNew(@RequestBody Bar bar) {
+    public ResponseEntity<String> addNew(@RequestBody Bar bar,
+                                         @AuthenticationPrincipal UserPrincipal principal) {
 
-            Long ownerId;
+            Long ownerId = Long.parseLong(principal.getUsername());
             Bar newBar = barService.addNewBar(bar,ownerId);
             return new ResponseEntity<>("New bar created with name : " + newBar.getName(),HttpStatus.CREATED);
 
@@ -46,18 +49,21 @@ public class BarController {
     }
 
     @DeleteMapping("/{barId}")
-    public ResponseEntity<String> deleteById(@PathVariable("barId") Long id) {
+    public ResponseEntity<String> deleteById(@PathVariable("barId") Long id,
+                                             @AuthenticationPrincipal UserPrincipal principal) {
 
-            Long ownerId;
+            Long ownerId = Long.parseLong(principal.getUsername());
             barService.deleteBarById(id,ownerId);
             return new ResponseEntity<>("Bar was deleted, id : " + id, HttpStatus.OK);
 
     }
 
     @PutMapping("/{barId}")
-    public ResponseEntity<String> updateById(@PathVariable("barId") Long id,@RequestBody Bar updatedBar) {
+    public ResponseEntity<String> updateById(@PathVariable("barId") Long id,
+                                             @RequestBody Bar updatedBar,
+                                             @AuthenticationPrincipal UserPrincipal principal) {
 
-            Long ownerId;
+            Long ownerId = Long.parseLong(principal.getUsername());
             Bar newBar = barService.updateBarById(id, updatedBar, ownerId);
             return new ResponseEntity<>("Bar was updated and saved, name : " + newBar.getName(), HttpStatus.OK);
 

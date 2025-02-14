@@ -85,7 +85,7 @@ public class BarService {
         Bar exBar = findBarById(id);
         updatedBar.setId(exBar.getId());
         barRepository.deleteById(id);
-        Bar newBar = addNewBar(updatedBar);
+        Bar newBar = addNewBar(updatedBar,ownerId);
 
         BarUpdatedEvent event = BarUpdatedEvent.builder()
                 .barId(newBar.getId())
@@ -94,7 +94,7 @@ public class BarService {
                 .build();
         kafkaBarProducerService.sendBarUpdatedEvent(event);
 
-        return addNewBar(updatedBar);
+        return addNewBar(updatedBar,ownerId);
     }
 
     @Transactional

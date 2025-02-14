@@ -95,7 +95,7 @@ public class DrinkService {
         Drink exDrink = findDrinkById(drinkId,barId);
         updatedDrink.setId(exDrink.getId());
         drinkRepository.deleteByBarIdAndId(barId,drinkId);
-        Drink newDrink = addNewDrink(barId,updatedDrink);
+        Drink newDrink = addNewDrink(barId,updatedDrink,ownerId);
 
         DrinkUpdatedEvent event = DrinkUpdatedEvent.builder()
                 .drinkId(newDrink.getId())
