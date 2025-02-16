@@ -17,7 +17,7 @@ public class JwtService {
     public static final String BEARER_PREFIX = "Bearer ";
     public static final String HEADER_NAME = "Authorization";
 
-    @Value("${token.signing.key}")
+    @Value("${security.jwt.token.secret-key}")
     private String jwtSigningKey;
 
     @Value("${security.jwt.token.expire-length:3600000}")

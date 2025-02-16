@@ -42,6 +42,6 @@ public class BarServiceExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleInternal(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something gone wrong!");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something gone wrong....!");
     }
 }

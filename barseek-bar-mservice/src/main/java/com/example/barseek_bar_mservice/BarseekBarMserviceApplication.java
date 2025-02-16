@@ -16,3 +16,4 @@ public class BarseekBarMserviceApplication {
 // добавить валидацию запросов т е авторизацию в сервисах
 // добавить auth сервис
 // security config
+// ОШИБКА в строке 28 BarController, видимо надо передавать корректный Jwt токен с ролью и айди , при этом там ошибка не NumberFormat , а просто Exeption почему то
