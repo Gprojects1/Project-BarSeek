@@ -22,15 +22,21 @@ public class Bar {
 
     @Column(name = "name")
     private String name;
+
     @Column(name = "address")
     private String address;
+
     @Column(name = "creation_date")
     private LocalDateTime createdAt;
+
     @Column(name = "last_update")
     private LocalDateTime updatedAt;
+
     @Column(name = "owner_id")
     private Long ownerId;
+
     @Column(name = "type")
+    @Enumerated(EnumType.STRING)
     private BarType type;
 
     @OneToMany(mappedBy = "bar",cascade = CascadeType.ALL,orphanRemoval = true)

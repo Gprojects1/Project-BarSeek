@@ -21,15 +21,20 @@ public class Drink {
 
     @Column(name = "name")
     private String name;
+
     @Column(name = "information")
     private String info;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private DrinkSaleStatus status;
+
     @Column(name = "type")
     private DrinkType type;
+
     @Column(name = "degree")
     private Integer degree;
+
     @Column(name = "creation_date")
     private LocalDateTime createdAt;
 
