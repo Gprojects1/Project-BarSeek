@@ -12,6 +12,7 @@ import com.example.barseek_auth_mservice.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -54,10 +55,9 @@ public class AuthService {
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
 
-        User user = userService.findByEmail(request.getEmail())
-                .orElseThrow(() -> new UserNotFoundException("User not found"));
+        UserDetails userDetails = userService.loadUserByUsername(request.getEmail());
 
-        String token = jwtUtil.generateToken(user);
+        String token = jwtUtil.generateToken(userDetails);
 
         return AuthResponse.builder()
                 .token(token)

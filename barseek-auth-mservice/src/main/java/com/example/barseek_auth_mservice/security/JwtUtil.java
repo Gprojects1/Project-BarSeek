@@ -6,6 +6,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -23,10 +24,10 @@ public class JwtUtil {
     @Value("${security.jwt.token.expire-length:3600000}")
     private long expiration;
 
-    public String generateToken(User user) {
+    public String generateToken(UserDetails user) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("sub", user.getId().toString());
-        claims.put("role", user.getRole());
+        claims.put("sub", ((User) user).getId().toString());
+        claims.put("role", ((User) user).getRole());
 
         return Jwts.builder()
                 .setClaims(claims)
