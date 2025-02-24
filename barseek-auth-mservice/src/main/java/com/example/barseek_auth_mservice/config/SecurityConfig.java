@@ -34,7 +34,7 @@ public class SecurityConfig {
 
     private final UserService userService;
 
-    private final String[] ALLOWED_URLS = { "/auth/**"};
+    private final String[] ALLOWED_URLS = { "/auth/**", "/h2-console/**"};
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -45,27 +45,10 @@ public class SecurityConfig {
                         .requestMatchers(ALLOWED_URLS).permitAll()
                         .anyRequest().authenticated())
                 .authenticationProvider(authenticationProvider())
-                //.addFilterBefore(corsFilter(), UsernamePasswordAuthenticationFilter.class)
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
 
         return http.build();
     }
-
-//    @Bean
-//    public CorsConfigurationSource configurationSource() {
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        CorsConfiguration config = new CorsConfiguration();
-//
-//        config.setAllowCredentials(true);
-//        config.setAllowedOrigins(Arrays.asList("http://localhost:8082", "http://localhost:8081")); //Укажите ваши origin
-//        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-//        config.setAllowedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Authorization"));
-//        config.setExposedHeaders(List.of("Authorization"));
-//
-//        source.registerCorsConfiguration("/**", config);
-//
-//        return new CorsFilter(source);
-//    }
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
