@@ -24,11 +24,8 @@ public class BarController {
     public ResponseEntity<String> addNew(@RequestBody Bar bar,
                                          @AuthenticationPrincipal UserPrincipal principal) {
 
-        //System.out.println("got req 1");
             Long ownerId = Long.parseLong(principal.getUsername());
-            //System.out.println("got req 2");
             Bar newBar = barService.addNewBar(bar,ownerId);
-        //System.out.println("got req 3");
             return new ResponseEntity<>("New bar created with name : " + newBar.getName(),HttpStatus.CREATED);
 
     }

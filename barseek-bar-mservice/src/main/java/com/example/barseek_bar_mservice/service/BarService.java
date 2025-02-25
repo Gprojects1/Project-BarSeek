@@ -46,7 +46,7 @@ public class BarService {
                 .ownerId(savedBar.getOwnerId())
                 .name(savedBar.getName())
                 .build();
-        kafkaBarProducerService.sendBarCreatedEvent(event);
+        //kafkaBarProducerService.sendBarCreatedEvent(event);
 
         return barRepository.save(bar);
     }

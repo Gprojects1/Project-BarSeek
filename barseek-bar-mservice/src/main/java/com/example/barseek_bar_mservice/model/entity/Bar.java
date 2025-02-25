@@ -5,6 +5,7 @@ import com.example.barseek_bar_mservice.model.types.BarType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.UUID;
 @Table(name = "bars")
 @Data
 @AllArgsConstructor
-
+@RequiredArgsConstructor
 public class Bar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,5 +42,4 @@ public class Bar {
 
     @OneToMany(mappedBy = "bar",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Drink> drinks;
-
 }
