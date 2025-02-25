@@ -21,6 +21,9 @@ public class Bar {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "owner_id")
+    private Long ownerId;
+
     @Column(name = "name")
     private String name;
 
@@ -33,13 +36,14 @@ public class Bar {
     @Column(name = "last_update")
     private LocalDateTime updatedAt;
 
-    @Column(name = "owner_id")
-    private Long ownerId;
-
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
     private BarType type;
 
     @OneToMany(mappedBy = "bar",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Drink> drinks;
+
+    @OneToOne
+    @Column(name = "avatar")
+    private Avatar avatar;
 }

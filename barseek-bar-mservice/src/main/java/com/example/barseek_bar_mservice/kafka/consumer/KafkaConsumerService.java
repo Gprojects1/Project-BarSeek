@@ -23,7 +23,7 @@ public class KafkaConsumerService {
 
         if("bar".equals(event.getRole())) {
             Owner owner = Owner.builder()
-                    .id(event.getUserId())
+                    .userId(event.getUserId())
                     .email(event.getEmail())
                     .role(event.getRole())
                     .build();

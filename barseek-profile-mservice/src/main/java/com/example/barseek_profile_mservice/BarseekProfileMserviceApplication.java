@@ -11,3 +11,4 @@ public class BarseekProfileMserviceApplication {
 	}
 
 }
+// мб убрать емайл , его обнволение должно проходить через сервис аутенификации?...

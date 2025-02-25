@@ -38,6 +38,7 @@ public class BarService {
             throw new InvalidDataException("Bar can not have an empty name!");
         }
 
+        bar.setOwnerId(ownerId);
         Bar savedBar = barRepository.save(bar);
 
         BarCreatedEvent event = BarCreatedEvent.builder()

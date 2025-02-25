@@ -6,11 +6,9 @@ import com.example.barseek_profile_mservice.service.UserProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,6 +25,22 @@ public class UserProfileController {
 
     @GetMapping("/{profileId}")
     public ResponseEntity<UserProfile> findById(@PathVariable(name = "profileId") Long id) {
+        return ResponseEntity.ok(null);
+    }
+
+    //@AuthenticationPrincipal |/
+    @GetMapping("/me")
+    public ResponseEntity<UserProfile> getMyProfile() {
+        return ResponseEntity.ok(null);
+    }
+
+    @PutMapping("/me")
+    public ResponseEntity<String> updateMyProfile() {
+        return ResponseEntity.ok(null);
+    }
+
+    @DeleteMapping("/me")
+    public ResponseEntity<String> deleteMyProfile() {
         return ResponseEntity.ok(null);
     }
 }

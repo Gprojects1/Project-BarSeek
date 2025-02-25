@@ -42,4 +42,9 @@ public class Drink {
     @ManyToOne
     @JoinColumn(name = "bar_id")
     private Bar bar;
+
+    @OneToOne
+    @Column(name = "avatar")
+    private Avatar avatar;
+
 }
