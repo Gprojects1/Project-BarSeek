@@ -18,3 +18,4 @@ public class BarseekBarMserviceApplication {
 // security config
 // ОШИБКА в строке 28 BarController, видимо надо передавать корректный Jwt токен с ролью и айди , при этом там ошибка не NumberFormat , а просто Exeption почему то
 // 36 , 44 ошибки скорее всего тк одинаковые пути , при этом 75 работает
+// айди юзера оттдельно
