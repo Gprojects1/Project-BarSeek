@@ -18,6 +18,7 @@ import java.util.List;
 
 @Entity
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Table(name = "users")
 @Data
 @Builder
@@ -35,6 +36,7 @@ public class User implements UserDetails {
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

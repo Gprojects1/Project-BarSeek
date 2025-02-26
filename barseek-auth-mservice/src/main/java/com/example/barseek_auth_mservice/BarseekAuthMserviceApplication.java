@@ -11,5 +11,4 @@ public class BarseekAuthMserviceApplication {
 	}
 
 }
-
-// сделать userDetailsService, AuthProvider, corsFilter , secFCh , JwtTF dont needed
+// мб логаут

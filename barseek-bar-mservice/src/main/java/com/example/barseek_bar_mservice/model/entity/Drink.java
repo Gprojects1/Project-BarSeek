@@ -6,6 +6,7 @@ import com.example.barseek_bar_mservice.model.types.DrinkType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Table(name = "drinks")
 @Data
 @AllArgsConstructor
-
+@RequiredArgsConstructor
 public class Drink {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,4 +42,9 @@ public class Drink {
     @ManyToOne
     @JoinColumn(name = "bar_id")
     private Bar bar;
+
+    @OneToOne
+    @Column(name = "avatar")
+    private Avatar avatar;
+
 }

@@ -21,7 +21,7 @@ public class OwnerService {
     }
 
     public Owner findOwnerById(Long ownerId) {
-        return ownerRepository.findById(ownerId).
+        return ownerRepository.findByUserId(ownerId).
                 orElseThrow(() -> new UnauthorizedAccessException("No bar owner with id : " + ownerId));
     }
 }

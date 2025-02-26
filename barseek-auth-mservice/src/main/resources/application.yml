@@ -8,7 +8,7 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:
-      group-id: bar-service-group
+      group-id: auth-service-group
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
@@ -22,5 +22,5 @@ spring:
 security:
   jwt:
     token:
-      secret-key: secret-key
+      secret-key: 7a4b9c2e1d8f3g5h6i0j9k2l3m4n5o6p
       expire-length: 300000

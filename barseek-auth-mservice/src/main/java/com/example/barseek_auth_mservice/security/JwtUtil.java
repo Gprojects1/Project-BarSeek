@@ -1,15 +1,16 @@
 package com.example.barseek_auth_mservice.security;
 
 import com.example.barseek_auth_mservice.model.entity.User;
+import lombok.RequiredArgsConstructor;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import lombok.RequiredArgsConstructor;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,16 +25,20 @@ public class JwtUtil {
     @Value("${security.jwt.token.expire-length:3600000}")
     private long expiration;
 
-    public String generateToken(UserDetails user) {
+    private SecretKey getSigningKey() {
+        return Keys.hmacShaKeyFor(jwtSigningKey.getBytes());
+    }
+
+    public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("sub", ((User) user).getId().toString());
-        claims.put("role", ((User) user).getRole());
+        claims.put("sub", ((User) userDetails).getId().toString());
+        claims.put("role", ((User) userDetails).getRole());
 
         return Jwts.builder()
-                .setClaims(claims)
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + expiration))
-                .signWith(SignatureAlgorithm.HS256, jwtSigningKey)
+                .claims(claims)
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + expiration))
+                .signWith(getSigningKey())
                 .compact();
     }
 

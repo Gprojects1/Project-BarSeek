@@ -34,7 +34,7 @@ public class UserService implements UserDetailsService {
                 .role(user.getRole())
                 .email(user.getEmail())
                 .build();
-        kafkaProducerService.sendUserCreatedEvent(userCreatedEvent);
+        //kafkaProducerService.sendUserCreatedEvent(userCreatedEvent);
 
         return userRepository.save(user);
     }

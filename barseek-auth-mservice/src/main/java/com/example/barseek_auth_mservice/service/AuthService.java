@@ -4,11 +4,13 @@ package com.example.barseek_auth_mservice.service;
 import com.example.barseek_auth_mservice.dto.AuthRequest;
 import com.example.barseek_auth_mservice.dto.AuthResponse;
 import com.example.barseek_auth_mservice.dto.RegisterRequest;
+import com.example.barseek_auth_mservice.exception.customExceptions.AuthException;
 import com.example.barseek_auth_mservice.exception.customExceptions.InvalidDataException;
 import com.example.barseek_auth_mservice.exception.customExceptions.UserNotFoundException;
 import com.example.barseek_auth_mservice.model.entity.User;
 import com.example.barseek_auth_mservice.repository.UserRepository;
 import com.example.barseek_auth_mservice.security.JwtUtil;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,6 +29,7 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
 
 
+    @Transactional
     public AuthResponse register(RegisterRequest request) {
 
         if(userService.findByEmail(request.getEmail()).isPresent()) {
@@ -49,7 +52,12 @@ public class AuthService {
 
     }
 
+    @Transactional
     public AuthResponse login(AuthRequest request) {
+
+
+        User user = userService.findByEmail(request.getEmail())
+                        .orElseThrow(() -> new AuthException("Wrong email!"));
 
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
