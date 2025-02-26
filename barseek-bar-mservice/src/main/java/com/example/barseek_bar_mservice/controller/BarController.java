@@ -54,7 +54,7 @@ public class BarController {
 
             Long ownerId = Long.parseLong(principal.getUsername());
             barService.deleteBarById(id,ownerId);
-            return new ResponseEntity<>("Bar was deleted, id : " + id, HttpStatus.OK);
+            return ResponseEntity.ok(("Bar was deleted, id : " + id));
 
     }
 

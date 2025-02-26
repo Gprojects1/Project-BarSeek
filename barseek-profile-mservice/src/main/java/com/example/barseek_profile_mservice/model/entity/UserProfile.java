@@ -1,4 +1,4 @@
-package com.example.barseek_profile_mservice.model;
+package com.example.barseek_profile_mservice.model.entity;
 
 
 import com.example.barseek_profile_mservice.model.type.Sex;

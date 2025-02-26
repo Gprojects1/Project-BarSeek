@@ -4,6 +4,7 @@ package com.example.barseek_auth_mservice.config;
 import com.example.barseek_auth_mservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.filters.CorsFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,6 +33,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+    @Autowired
     private final UserService userService;
 
     private final String[] ALLOWED_URLS = { "/auth/**", "/h2-console/**"};

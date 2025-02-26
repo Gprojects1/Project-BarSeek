@@ -1,13 +1,14 @@
 package com.example.barseek_profile_mservice.controller;
 
 
-import com.example.barseek_profile_mservice.model.UserProfile;
+import com.example.barseek_profile_mservice.dto.UpdateProfileRequest;
+import com.example.barseek_profile_mservice.model.entity.UserProfile;
+import com.example.barseek_profile_mservice.security.UserPrincipal;
 import com.example.barseek_profile_mservice.service.UserProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,17 +31,28 @@ public class UserProfileController {
 
     //@AuthenticationPrincipal |/
     @GetMapping("/me")
-    public ResponseEntity<UserProfile> getMyProfile() {
-        return ResponseEntity.ok(null);
+    public ResponseEntity<UserProfile> getMyProfile(@AuthenticationPrincipal UserPrincipal principal) {
+
+        Long userId = Long.parseLong(principal.getUsername());
+        UserProfile profile = userProfileService.getUserProfile(userId);
+        return ResponseEntity.ok(profile);
+
     }
 
     @PutMapping("/me")
-    public ResponseEntity<String> updateMyProfile() {
-        return ResponseEntity.ok(null);
+    public ResponseEntity<String> updateMyProfile(@AuthenticationPrincipal UserPrincipal principal,
+                                                  @RequestBody UpdateProfileRequest updateProfileRequest) {
+        Long userId = Long.parseLong(principal.getUsername());
+        UserProfile newProfile = userProfileService.updateUserProfile(userId,updateProfileRequest);
+        return ResponseEntity.ok("Profile updated, id : " + newProfile.getId());
     }
 
     @DeleteMapping("/me")
-    public ResponseEntity<String> deleteMyProfile() {
-        return ResponseEntity.ok(null);
+    public ResponseEntity<String> deleteMyProfile(@AuthenticationPrincipal UserPrincipal principal) {
+
+        Long userId = Long.parseLong(principal.getUsername());
+        userProfileService.deleteUserProfile(userId);
+        return ResponseEntity.ok("profile was deleted");
+
     }
 }
