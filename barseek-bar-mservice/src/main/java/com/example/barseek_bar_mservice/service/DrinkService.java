@@ -1,6 +1,7 @@
 package com.example.barseek_bar_mservice.service;
 
 
+import com.example.barseek_bar_mservice.dto.UpdateDrinkRequest;
 import com.example.barseek_bar_mservice.exception.customExceptions.DrinkNotFoundException;
 import com.example.barseek_bar_mservice.exception.customExceptions.InvalidDataException;
 import com.example.barseek_bar_mservice.kafka.p_events.DrinkCreatedEvent;
@@ -16,6 +17,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,6 +43,7 @@ public class DrinkService {
 
         Bar bar = barService.findBarById(barId);
         drink.setBar(bar);
+        drink.setCreatedAt(LocalDateTime.now());
         Drink newDrink = drinkRepository.save(drink);
 
         DrinkCreatedEvent event = DrinkCreatedEvent.builder()
@@ -88,11 +91,22 @@ public class DrinkService {
     }
 
     @Transactional
-    public Drink updateDrinkById(Long barId, Long drinkId, Drink updatedDrink, Long ownerId) {
+    public Drink updateDrinkById(Long barId, Long drinkId, UpdateDrinkRequest updateDrinkRequest, Long ownerId) {
 
         Owner owner = ownerService.findOwnerById(ownerId);
 
         Drink exDrink = findDrinkById(drinkId,barId);
+        Drink updatedDrink = Drink.builder()
+                .name(updateDrinkRequest.getName())
+                .info(updateDrinkRequest.getInfo())
+                .status(updateDrinkRequest.getDrinkSaleStatus())
+                .degree(updateDrinkRequest.getDegree())
+                .type(exDrink.getType())
+                .createdAt(exDrink.getCreatedAt())
+                .avatar(exDrink.getAvatar())
+                .bar(exDrink.getBar())
+                .build();
+
         updatedDrink.setId(exDrink.getId());
         drinkRepository.deleteByBarIdAndId(barId,drinkId);
         Drink newDrink = addNewDrink(barId,updatedDrink,ownerId);

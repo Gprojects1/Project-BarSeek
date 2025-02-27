@@ -1,6 +1,7 @@
 package com.example.barseek_bar_mservice.controller;
 
 
+import com.example.barseek_bar_mservice.dto.UpdateBarRequest;
 import com.example.barseek_bar_mservice.model.entity.Bar;
 import com.example.barseek_bar_mservice.model.entity.Drink;
 import com.example.barseek_bar_mservice.security.UserPrincipal;
@@ -22,12 +23,11 @@ public class BarController {
 
     @PostMapping
     public ResponseEntity<String> addNew(@RequestBody Bar bar,
-                                         @AuthenticationPrincipal UserPrincipal principal) {
-
+                                         @AuthenticationPrincipal UserPrincipal principal
+    ) {
             Long ownerId = Long.parseLong(principal.getUsername());
             Bar newBar = barService.addNewBar(bar,ownerId);
             return new ResponseEntity<>("New bar created with name : " + newBar.getName(),HttpStatus.CREATED);
-
     }
 
     @GetMapping("/{barId}")
@@ -35,7 +35,6 @@ public class BarController {
 
             Bar barResp = barService.findBarById(id);
             return ResponseEntity.ok(barResp);
-
     }
 
     @GetMapping("/{barName}")
@@ -45,28 +44,25 @@ public class BarController {
             return barsResp.isEmpty() ?
                     new ResponseEntity("No bars found", HttpStatus.NO_CONTENT) :
                     ResponseEntity.ok(barsResp);
-
     }
 
     @DeleteMapping("/{barId}")
     public ResponseEntity<String> deleteById(@PathVariable("barId") Long id,
-                                             @AuthenticationPrincipal UserPrincipal principal) {
-
+                                             @AuthenticationPrincipal UserPrincipal principal
+    ) {
             Long ownerId = Long.parseLong(principal.getUsername());
             barService.deleteBarById(id,ownerId);
             return ResponseEntity.ok(("Bar was deleted, id : " + id));
-
     }
 
     @PutMapping("/{barId}")
     public ResponseEntity<String> updateById(@PathVariable("barId") Long id,
-                                             @RequestBody Bar updatedBar,
-                                             @AuthenticationPrincipal UserPrincipal principal) {
-
+                                             @RequestBody UpdateBarRequest updateBarRequest,
+                                             @AuthenticationPrincipal UserPrincipal principal
+    ) {
             Long ownerId = Long.parseLong(principal.getUsername());
-            Bar newBar = barService.updateBarById(id, updatedBar, ownerId);
+            Bar newBar = barService.updateBarById(id, updateBarRequest, ownerId);
             return new ResponseEntity<>("Bar was updated and saved, name : " + newBar.getName(), HttpStatus.OK);
-
     }
 
     @GetMapping("/{barId}/all")
@@ -76,7 +72,6 @@ public class BarController {
             return drinks.isEmpty() ?
                     new ResponseEntity("No drinks in chosen bar!", HttpStatus.NO_CONTENT) :
                     ResponseEntity.ok(drinks);
-
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.barseek_profile_mservice.exception;
 
 
+import com.example.barseek_profile_mservice.exception.customExceptions.AvatarNotFoundException;
 import com.example.barseek_profile_mservice.exception.customExceptions.InvalidDataException;
 import com.example.barseek_profile_mservice.exception.customExceptions.ProfileNotFoundException;
 import com.example.barseek_profile_mservice.exception.customExceptions.UnauthorizedAccessException;
@@ -25,6 +26,11 @@ public class ProfileExceptionHandler {
     @ExceptionHandler(UnauthorizedAccessException.class)
     public ResponseEntity<String> handleUnauthorizedAccessException(UnauthorizedAccessException ex) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(AvatarNotFoundException.class)
+    public ResponseEntity<String> handleAvatarNotFound(AvatarNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)

@@ -5,6 +5,7 @@ import com.example.barseek_bar_mservice.model.types.DrinkSaleStatus;
 import com.example.barseek_bar_mservice.model.types.DrinkType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "drinks")
 @Data
+@Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Drink {
@@ -20,7 +22,7 @@ public class Drink {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "information")

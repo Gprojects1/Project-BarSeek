@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class KafkaConsumerService {
 
-    private final BarService barService;
-
     private final OwnerService ownerService;
 
     @KafkaListener(topics = "user.events", groupId = "bar-service-group")

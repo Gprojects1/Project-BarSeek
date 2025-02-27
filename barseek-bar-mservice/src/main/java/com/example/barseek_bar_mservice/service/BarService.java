@@ -1,6 +1,7 @@
 package com.example.barseek_bar_mservice.service;
 
 
+import com.example.barseek_bar_mservice.dto.UpdateBarRequest;
 import com.example.barseek_bar_mservice.exception.customExceptions.BarNotFoundException;
 import com.example.barseek_bar_mservice.exception.customExceptions.InvalidDataException;
 import com.example.barseek_bar_mservice.kafka.p_events.BarCreatedEvent;
@@ -15,6 +16,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -39,6 +41,7 @@ public class BarService {
         }
 
         bar.setOwnerId(ownerId);
+        bar.setCreatedAt(LocalDateTime.now());
         Bar savedBar = barRepository.save(bar);
 
         BarCreatedEvent event = BarCreatedEvent.builder()
@@ -80,11 +83,22 @@ public class BarService {
     }
 
     @Transactional
-    public Bar updateBarById(Long id, Bar updatedBar, Long ownerId) {
-
+    public Bar updateBarById(Long id, UpdateBarRequest updateBarRequest, Long ownerId) {
         Owner owner = ownerService.findOwnerById(ownerId);
         Bar exBar = findBarById(id);
+
+        Bar updatedBar = Bar.builder()
+                .name(updateBarRequest.getName())
+                .type(updateBarRequest.getBarType())
+                .address(updateBarRequest.getAddress())
+                .createdAt(exBar.getCreatedAt())
+                .avatar(exBar.getAvatar())
+                .drinks(exBar.getDrinks())
+                .updatedAt(LocalDateTime.now())
+                .ownerId(ownerId)
+                .build();
         updatedBar.setId(exBar.getId());
+
         barRepository.deleteById(id);
         Bar newBar = addNewBar(updatedBar,ownerId);
 
@@ -95,7 +109,7 @@ public class BarService {
                 .build();
         kafkaBarProducerService.sendBarUpdatedEvent(event);
 
-        return addNewBar(updatedBar,ownerId);
+        return newBar;
     }
 
     @Transactional

@@ -17,17 +17,14 @@ public class KafkaBarProducerService {
     private final String topicName = "bar.events";
 
     public void sendBarCreatedEvent(BarCreatedEvent event) {
-
         kafkaTemplate.send(topicName,"created",event);
     }
 
     public void sendBarDeletedEvent(BarDeletedEvent event) {
-
         kafkaTemplate.send(topicName,"deleted",event);
     }
 
     public void sendBarUpdatedEvent(BarUpdatedEvent event) {
-
         kafkaTemplate.send(topicName,"updated",event);
     }
 
