@@ -5,8 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class UserCreatedEvent {
+public class EmailChangedEvent {
     private Long userId;
     private String email;
-    private String role;
 }

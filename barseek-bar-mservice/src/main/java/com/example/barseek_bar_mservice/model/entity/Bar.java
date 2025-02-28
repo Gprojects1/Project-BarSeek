@@ -4,6 +4,7 @@ package com.example.barseek_bar_mservice.model.entity;
 import com.example.barseek_bar_mservice.model.types.BarType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "bars")
 @Data
+@Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Bar {
@@ -21,10 +23,10 @@ public class Bar {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "owner_id")
+    @Column(name = "owner_id", nullable = false)
     private Long ownerId;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "address")
@@ -44,6 +46,6 @@ public class Bar {
     private List<Drink> drinks;
 
     @OneToOne
-    @Column(name = "avatar")
+    @JoinColumn(name = "avatar_id")
     private Avatar avatar;
 }

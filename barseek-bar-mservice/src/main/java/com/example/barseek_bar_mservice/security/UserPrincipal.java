@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class UserPrincipal implements UserDetails {
+
     private final String userId;
     private final String role;
 

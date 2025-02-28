@@ -1,18 +1,27 @@
-package com.example.barseek_profile_mservice.kafka.events;
+package com.example.barseek_profile_mservice.dto;
+
 
 import com.example.barseek_profile_mservice.model.type.Sex;
-import lombok.Builder;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
-@Builder
-public class ProfileUpdatedEvent {
-    private Long userId;
+public class UpdateProfileRequest {
+
     private String email;
+
     private String firstName;
+
     private String secondName;
+
     private String phone;
+
     private LocalDateTime birthDate;
+
+    private Sex sex;
+
 }

@@ -1,4 +1,4 @@
-package com.example.barseek_profile_mservice.model;
+package com.example.barseek_profile_mservice.model.entity;
 
 
 import com.example.barseek_profile_mservice.model.type.Sex;
@@ -21,7 +21,7 @@ public class UserProfile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "user_id", nullable = false, unique = true)
     private Long userId;
 
     @Column(name = "email", nullable = false)
@@ -47,6 +47,6 @@ public class UserProfile {
     private Sex sex;
 
     @OneToOne
-    @Column(name = "avatar")
+    @JoinColumn(name = "avatar_id")
     private Avatar avatar;
 }
