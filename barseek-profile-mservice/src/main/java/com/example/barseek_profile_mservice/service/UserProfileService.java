@@ -6,6 +6,7 @@ import com.example.barseek_profile_mservice.exception.customExceptions.AvatarNot
 import com.example.barseek_profile_mservice.exception.customExceptions.InvalidDataException;
 import com.example.barseek_profile_mservice.exception.customExceptions.ProfileNotFoundException;
 import com.example.barseek_profile_mservice.kafka.KafkaProducerService;
+import com.example.barseek_profile_mservice.kafka.events.EmailChangedEvent;
 import com.example.barseek_profile_mservice.kafka.events.ProfileDeletedEvent;
 import com.example.barseek_profile_mservice.kafka.events.ProfileUpdatedEvent;
 import com.example.barseek_profile_mservice.model.entity.Avatar;
@@ -66,6 +67,14 @@ public class UserProfileService {
         deleteUserProfile(exProfile.getUserId());
         userRepository.save(newProfile);
 
+        if(!(exProfile.getEmail().equals(newProfile.getEmail()))) {
+            EmailChangedEvent event = EmailChangedEvent.builder()
+                    .userId(userId)
+                    .email(newProfile.getEmail())
+                    .build();
+            kafkaProducerService.sendEmailChangedEvent(event);
+        }
+
         ProfileUpdatedEvent event = ProfileUpdatedEvent.builder()
                 .email(newProfile.getEmail())
                 .birthDate(newProfile.getBirthDate())
@@ -73,7 +82,6 @@ public class UserProfileService {
                 .phone(newProfile.getPhone())
                 .userId(newProfile.getUserId())
                 .secondName(newProfile.getSecondName())
-                .sex(newProfile.getSex())
                 .build();
         kafkaProducerService.sendProfileUpdatedEvent(event);
 

@@ -17,17 +17,14 @@ public class KafkaDrinkProducerService {
     private final String topicName = "drinks.events";
 
     public void sendDrinkCreatedEvent(DrinkCreatedEvent event) {
-
         kafkaTemplate.send(topicName,"created",event);
     }
 
     public void sendDrinkDeletedEvent(DrinkDeletedEvent event) {
-
         kafkaTemplate.send(topicName,"deleted",event);
     }
 
     public void sendDrinkUpdatedEvent(DrinkUpdatedEvent event) {
-
         kafkaTemplate.send(topicName,"updated",event);
     }
 

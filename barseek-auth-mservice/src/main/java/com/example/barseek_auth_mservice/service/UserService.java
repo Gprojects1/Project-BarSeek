@@ -23,6 +23,11 @@ public class UserService implements UserDetailsService {
 
     private final KafkaProducerService kafkaProducerService;
 
+    public User findById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(()-> new UserNotFoundException("no user with id : " + id));
+    }
+
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
@@ -43,5 +48,18 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return findByEmail(email)
                 .orElseThrow(() -> new UserNotFoundException("User does not exist..."));
+    }
+
+    @Transactional
+    public void deleteUserByIdAndEmail(Long id,String email) {
+        loadUserByUsername(email);
+        userRepository.deleteUserByIdAndEmail(id,email);
+    }
+
+    @Transactional
+    public void changeEmailById(Long id, String email) {
+        User user = findById(id);
+        user.setEmail(email);
+        userRepository.save(user);
     }
 }

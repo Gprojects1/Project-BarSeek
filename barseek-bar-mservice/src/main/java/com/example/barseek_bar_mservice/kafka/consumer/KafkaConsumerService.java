@@ -5,16 +5,18 @@ import com.example.barseek_bar_mservice.model.entity.Owner;
 import com.example.barseek_bar_mservice.service.BarService;
 import com.example.barseek_bar_mservice.service.OwnerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@KafkaListener(topics = "user.events", groupId = "bar-service-group")
 public class KafkaConsumerService {
 
     private final OwnerService ownerService;
 
-    @KafkaListener(topics = "user.events", groupId = "bar-service-group")
+    @KafkaHandler
     public void handleUserCreatedEvent(UserCreatedEvent event) {
 
         System.out.println("Received user created event: " + event);

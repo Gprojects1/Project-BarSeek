@@ -1,5 +1,6 @@
 package com.example.barseek_profile_mservice.kafka;
 
+import com.example.barseek_profile_mservice.kafka.events.EmailChangedEvent;
 import com.example.barseek_profile_mservice.kafka.events.ProfileDeletedEvent;
 import com.example.barseek_profile_mservice.kafka.events.ProfileUpdatedEvent;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,10 @@ public class KafkaProducerService {
 
     public void sendProfileUpdatedEvent(ProfileUpdatedEvent event) {
         kafkaTemplate.send(TOPIC_NAME,"updated",event);
+    }
+
+    public void sendEmailChangedEvent(EmailChangedEvent event) {
+        kafkaTemplate.send(TOPIC_NAME, "email_changed",event);
     }
 
 }

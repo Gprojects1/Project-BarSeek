@@ -47,6 +47,6 @@ public class UserProfile {
     private Sex sex;
 
     @OneToOne
-    @Column(name = "avatar")
+    @JoinColumn(name = "avatar_id")
     private Avatar avatar;
 }

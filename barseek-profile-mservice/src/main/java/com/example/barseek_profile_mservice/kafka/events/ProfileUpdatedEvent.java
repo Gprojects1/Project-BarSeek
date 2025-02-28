@@ -15,5 +15,4 @@ public class ProfileUpdatedEvent {
     private String secondName;
     private String phone;
     private LocalDateTime birthDate;
-    private Sex sex;
 }

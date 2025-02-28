@@ -46,6 +46,6 @@ public class Bar {
     private List<Drink> drinks;
 
     @OneToOne
-    @Column(name = "avatar")
+    @JoinColumn(name = "avatar_id")
     private Avatar avatar;
 }
