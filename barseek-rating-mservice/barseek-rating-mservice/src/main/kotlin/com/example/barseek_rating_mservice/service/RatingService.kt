@@ -26,4 +26,20 @@ class RatingService(
         val rating : DrinkRating? = drinkRatingRepository.findByDrinkId(drinkId)
         return rating ?: throw DrinkNotFoundException("no bar with $drinkId id!")
     }
+
+    @Transactional
+    fun updateDrinkRating(id : Long, score : Double) {
+        val rating = getDrinkRating(id)
+        val newRC = rating.reviewCount + 1
+        rating.score = (rating.score * rating.reviewCount + score) / newRC
+        rating.reviewCount = newRC
+    }
+
+    @Transactional
+    fun updateBarRating(id : Long, score : Double) {
+        val rating = getBarRating(id)
+        val newRC = rating.reviewCount + 1
+        rating.score = (rating.score * rating.reviewCount + score) / newRC
+        rating.reviewCount = newRC
+    }
 }

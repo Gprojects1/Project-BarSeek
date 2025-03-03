@@ -46,7 +46,7 @@ public class Drink {
     private Bar bar;
 
     @OneToOne
-    @Column(name = "avatar")
+    @JoinColumn(name = "avatar_id")
     private Avatar avatar;
 
 }

@@ -14,10 +14,10 @@ data class BarRating (
     val id : Long ? = null,
 
     @Column(name = "score")
-    val score : Double = 0.0,
+    var score : Double = 0.0,
 
     @Column(name = "review_count")
-    val reviewCount : Int = 0,
+    var reviewCount : Int = 0,
 
     @Column(name = "bar_id")
     val barId : Long
@@ -31,10 +31,10 @@ data class DrinkRating (
     val id : Long ? = null,
 
     @Column(name = "score")
-    val score : Double = 0.0,
+    var score : Double = 0.0,
 
     @Column(name = "review_count")
-    val reviewCount : Int = 0,
+    var reviewCount : Int = 0,
 
     @Column(name = "drink_id")
     val drinkId : Long
