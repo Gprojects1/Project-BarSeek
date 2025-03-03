@@ -1,0 +1,25 @@
+server:
+  port: 8084
+
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: rating-service-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: com.example.barseek_rating_mservice.kafka.events
+
+security:
+  jwt:
+    token:
+      secret-key: 7a4b9c2e1d8f3g5h6i0j9k2l3m4n5o6p

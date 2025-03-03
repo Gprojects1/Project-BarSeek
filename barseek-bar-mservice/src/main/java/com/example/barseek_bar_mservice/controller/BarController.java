@@ -37,7 +37,7 @@ public class BarController {
             return ResponseEntity.ok(barResp);
     }
 
-    @GetMapping("/{barName}")
+    @GetMapping("search/{barName}")
     public ResponseEntity<List<Bar>> findByName(@PathVariable("barName") String name) {
 
             List<Bar> barsResp = barService.findBarByName(name);
