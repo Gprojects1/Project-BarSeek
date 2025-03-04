@@ -5,10 +5,10 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.MappedSuperclass
 
-
-@Entity
-data class BarRating (
+@MappedSuperclass
+abstract class Rating (
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id : Long ? = null,
@@ -17,25 +17,5 @@ data class BarRating (
     var score : Double = 0.0,
 
     @Column(name = "review_count")
-    var reviewCount : Int = 0,
-
-    @Column(name = "bar_id")
-    val barId : Long
-)
-
-
-@Entity
-data class DrinkRating (
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id : Long ? = null,
-
-    @Column(name = "score")
-    var score : Double = 0.0,
-
-    @Column(name = "review_count")
-    var reviewCount : Int = 0,
-
-    @Column(name = "drink_id")
-    val drinkId : Long
+    var reviewCount : Int = 0
 )
