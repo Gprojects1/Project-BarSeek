@@ -1,0 +1,54 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    loadbalancer:
+      ribbon:
+        enabled: false
+  cloud:
+    gateway:
+      routes:
+        - id: auth-service
+          uri: lb://auth-mservice
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+            - JwtAuthFilter
+
+        - id: bar-service
+          uri: lb://bar-mservice
+          predicates:
+            - Path=/bars/**
+          filters:
+            - StripPrefix=1
+            - JwtAuthFilter
+
+        - id: rating-service
+          uri: lb://rating-mservice
+          predicates:
+            - Path=/ratings/**
+          filters:
+            - StripPrefix=1
+            - JwtAuthFilter
+
+        - id: profile-service
+          uri: lb://profile-mservice
+          predicates:
+            - Path=/profiles/**
+          filters:
+            - StripPrefix=1
+            - JwtAuthFilter
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+
+security:
+  jwt:
+    token:
+      secret-key: 7a4b9c2e1d8f3g5h6i0j9k2l3m4n5o6p

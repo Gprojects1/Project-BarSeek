@@ -1,20 +1,11 @@
 server:
   port: 8081
-#spring:
-#  boot:
-#    admin:
-#      client:
-#        url: http://localhost:8081/admin
-#      context-path: /admin
-#
-#
-#
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include=health,info,metrics:
-#        include: "*"
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
 spring:
   kafka:
     bootstrap-servers: localhost:9092

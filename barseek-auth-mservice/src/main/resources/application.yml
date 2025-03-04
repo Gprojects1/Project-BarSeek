@@ -24,3 +24,8 @@ security:
     token:
       secret-key: 7a4b9c2e1d8f3g5h6i0j9k2l3m4n5o6p
       expire-length: 300000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
