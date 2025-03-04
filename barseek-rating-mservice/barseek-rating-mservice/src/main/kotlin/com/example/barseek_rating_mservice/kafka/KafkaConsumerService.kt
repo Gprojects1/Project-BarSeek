@@ -13,12 +13,12 @@ class KafkaConsumerService(private val ratingService: RatingService) {
 
     @KafkaHandler
     fun handleBarReviewCreatedEvent(event : BarReviewCreatedEvent) {
-        ratingService.updateBarRating(event.barId,event.score)
+        ratingService.updateBarRating(event.barId, event.score)
     }
 
     @KafkaHandler
     fun handleDrinkReviewCreatedEvent(event : DrinkReviewCreatedEvent) {
-        ratingService.updateDrinkRating(event.drinkId,event.score)
+        ratingService.updateDrinkRating(event.drinkId, event.score)
     }
 
 }
