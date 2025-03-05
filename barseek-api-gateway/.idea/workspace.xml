@@ -7,14 +7,21 @@
     <list default="true" id="b36ec070-a657-4f49-b774-5d27547f95b7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/java/com/example/barseek_bar_mservice/BarseekBarMserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/java/com/example/barseek_bar_mservice/BarseekBarMserviceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-rating-mservice/barseek-rating-mservice/src/main/kotlin/com/example/barseek_rating_mservice/kafka/KafkaConsumerService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-rating-mservice/barseek-rating-mservice/src/main/kotlin/com/example/barseek_rating_mservice/kafka/KafkaConsumerService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-rating-mservice/barseek-rating-mservice/src/main/kotlin/com/example/barseek_rating_mservice/model/Rating.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-rating-mservice/barseek-rating-mservice/src/main/kotlin/com/example/barseek_rating_mservice/model/Rating.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/barseek_api_gateway/BarseekApiGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/barseek_api_gateway/BarseekApiGatewayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../barseek-auth-mservice/src/main/java/com/example/barseek_auth_mservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-auth-mservice/src/main/java/com/example/barseek_auth_mservice/config/SecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -42,7 +49,7 @@
     &quot;Application.BarseekApiGatewayApplication.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;non__zero__trust&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/79258/ProjectBarSeek/barseek-api-gateway&quot;
