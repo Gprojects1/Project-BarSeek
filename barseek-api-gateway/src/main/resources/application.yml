@@ -2,6 +2,17 @@ server:
   port: 8085
 
 spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+      - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+      - org.springframework.boot.autoconfigure.security.reactive.ReactiveUserDetailsServiceAutoConfiguration
+      - org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration
+      - org.springframework.boot.autoconfigure.session.SessionAutoConfiguration
+
+  security:
+    enabled: false
+
   application:
     loadbalancer:
       ribbon:
@@ -9,37 +20,55 @@ spring:
   cloud:
     gateway:
       routes:
+
         - id: auth-service
-          uri: lb://auth-mservice
+          uri: lb://barseek-auth-mservice
           predicates:
             - Path=/auth/**
           filters:
             - StripPrefix=1
-            - JwtAuthFilter
+
+            - name: CircuitBreaker
+              args:
+                name: authServiceCircuitBreaker
+                fallbackUri: forward:/fallback/auth
 
         - id: bar-service
-          uri: lb://bar-mservice
+          uri: lb://barseek-bar-mservice
           predicates:
             - Path=/bars/**
           filters:
             - StripPrefix=1
-            - JwtAuthFilter
+
+            - name: CircuitBreaker
+              args:
+                name : barServiceCircuitBreaker
+                fallbackUri: forward:/fallback/bar
+
 
         - id: rating-service
-          uri: lb://rating-mservice
+          uri: lb://barseek-rating-mservice
           predicates:
             - Path=/ratings/**
           filters:
             - StripPrefix=1
-            - JwtAuthFilter
+
+            - name: CircuitBreaker
+              args:
+                name: ratingServiceCircuitBreaker
+                fallbackUri: forward:/fallback/rating
 
         - id: profile-service
-          uri: lb://profile-mservice
+          uri: lb://barseek-profile-mservice
           predicates:
             - Path=/profiles/**
           filters:
             - StripPrefix=1
-            - JwtAuthFilter
+
+            - name: CircuitBreaker
+              args:
+                name: profileServiceCircuitBreaker
+                fallbackUri: forward:/fallback/profile
 
 
 eureka:
@@ -47,8 +76,42 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 
-
-security:
-  jwt:
+jwt:
     token:
       secret-key: 7a4b9c2e1d8f3g5h6i0j9k2l3m4n5o6p
+
+resilience4j:
+  circuitbreaker:
+    instances:
+
+      profileServiceCircuitBreaker:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+
+      authServiceCircuitBreaker:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+
+      barServiceCircuitBreaker:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+
+      ratingServiceCircuitBreaker:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true

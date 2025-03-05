@@ -47,6 +47,9 @@ public class SecurityConfig {
                         .requestMatchers(ALLOWED_URLS).permitAll()
                         .anyRequest().authenticated())
                 .authenticationProvider(authenticationProvider())
+                .httpBasic(AbstractHttpConfigurer::disable) // Отключаем базовую аутентификацию
+                .formLogin(AbstractHttpConfigurer::disable) // Отключаем форму входа
+                .logout(AbstractHttpConfigurer::disable)
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
 
         return http.build();

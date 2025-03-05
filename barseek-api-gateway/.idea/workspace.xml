@@ -9,21 +9,19 @@
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/barseek_api_gateway/BarseekApiGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/barseek_api_gateway/BarseekApiGatewayApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-auth-mservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-auth-mservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-auth-mservice/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-auth-mservice/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-bar-mservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-bar-mservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/java/com/example/barseek_bar_mservice/BarseekBarMserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/java/com/example/barseek_bar_mservice/BarseekBarMserviceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-profile-mservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-profile-mservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-profile-mservice/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-profile-mservice/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-rating-mservice/barseek-rating-mservice/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-rating-mservice/barseek-rating-mservice/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-rating-mservice/barseek-rating-mservice/src/main/kotlin/com/example/barseek_rating_mservice/BarseekRatingMserviceApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-rating-mservice/barseek-rating-mservice/src/main/kotlin/com/example/barseek_rating_mservice/BarseekRatingMserviceApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-rating-mservice/barseek-rating-mservice/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-rating-mservice/barseek-rating-mservice/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../barseek-auth-mservice/src/main/java/com/example/barseek_auth_mservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-auth-mservice/src/main/java/com/example/barseek_auth_mservice/config/SecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -46,17 +44,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.BarseekApiGatewayApplication.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "non__zero__trust",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/79258/ProjectBarSeek/barseek-api-gateway"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.BarseekApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;non__zero__trust&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/79258/ProjectBarSeek/barseek-api-gateway&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
