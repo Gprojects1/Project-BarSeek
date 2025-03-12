@@ -24,7 +24,8 @@ func NewBarReviewService(barRepo repository.BarReviewRepository) BarReviewServic
 }
 
 func (s *barReviewService) AddBarReview(review *model.BarReview) (*model.BarReview, error) {
-	if review == nil {
+
+	if review.Content == "" {
 		return nil, errors.New("review cannot be nil")
 	}
 	return s.barReviewRepo.Save(review)

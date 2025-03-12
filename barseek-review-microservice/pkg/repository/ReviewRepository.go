@@ -1,8 +1,8 @@
 package repository
 
 import (
+	"barseek-review-microservice/pkg/errors"
 	"barseek-review-microservice/pkg/model"
-	"errors"
 
 	"gorm.io/gorm"
 )
@@ -25,6 +25,12 @@ func NewReviewRepository[T any](db *gorm.DB) ReviewRepository[T] {
 
 func (r *reviewRepository[T]) Save(review *T) (*T, error) {
 	if err := r.db.Save(review).Error; err != nil {
+		switch err {
+		case gorm.ErrRecordNotFound:
+			err = errors.Wrapf(err, errors.NotSaved.Message())
+		default:
+			err = errors.Newf(errors.NotSaved.Message())
+		}
 		return nil, err
 	}
 	return review, nil
@@ -33,6 +39,12 @@ func (r *reviewRepository[T]) Save(review *T) (*T, error) {
 func (r *reviewRepository[T]) FindById(id uint) (*T, error) {
 	var review T
 	if err := r.db.First(&review, id).Error; err != nil {
+		switch err {
+		case gorm.ErrRecordNotFound:
+			err = errors.Wrapf(err, errors.NotFound.Message())
+		default:
+			err = errors.Newf(errors.NotFound.Message())
+		}
 		return nil, err
 	}
 	return &review, nil
@@ -48,10 +60,16 @@ func (r *reviewRepository[T]) FindAllByEntityId(entityId uint) ([]T, error) {
 	case *model.DrinkReview:
 		err = r.db.Where("drink_id = ?", entityId).Find(&reviews).Error
 	default:
-		return nil, errors.New("unsupported review type")
+		return nil, errors.Newf(errors.WrongType.Message())
 	}
 
 	if err != nil {
+		switch err {
+		case gorm.ErrRecordNotFound:
+			err = errors.Wrapf(err, errors.NotFound.Message())
+		default:
+			err = errors.Newf(errors.NotFound.Message())
+		}
 		return nil, err
 	}
 	return reviews, nil
@@ -64,6 +82,12 @@ func (r *reviewRepository[T]) DeleteById(id uint) error {
 func (r *reviewRepository[T]) FindAllByUserId(id uint) ([]T, error) {
 	var reviews []T
 	if err := r.db.Where("user_id = ?", id).Find(&reviews).Error; err != nil {
+		switch err {
+		case gorm.ErrRecordNotFound:
+			err = errors.Wrapf(err, errors.NotFound.Message())
+		default:
+			err = errors.Newf(errors.NotFound.Message())
+		}
 		return nil, err
 	}
 	return reviews, nil
