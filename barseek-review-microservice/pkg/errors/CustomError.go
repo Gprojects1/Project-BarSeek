@@ -14,6 +14,7 @@ const (
 	NilRole
 	NotSaved
 	WrongType
+	EmptyData
 )
 
 type ErrorType uint
@@ -93,6 +94,8 @@ func (t ErrorType) Message() string {
 		return "Can not save to db."
 	case WrongType:
 		return "Wrong data type delivered."
+	case EmptyData:
+		return "Some data is not defined."
 	default:
 		return "Unknown error occurred."
 	}

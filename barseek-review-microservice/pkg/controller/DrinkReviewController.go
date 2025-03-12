@@ -35,14 +35,14 @@ func (con *drinkReviewController) AddBarReview(c *gin.Context) {
 		middleware.HandleError(c, err)
 	}
 
-	c.JSON(http.StatusCreated, gin.H{"message": "New bar created with Title: " + NewRev.Title})
+	c.JSON(http.StatusCreated, gin.H{"message": "New RevDrink created with Title: " + NewRev.Title})
 
 }
 
 func (con *drinkReviewController) GetDrinkReviewById(c *gin.Context) {
 	Id, err := strconv.ParseUint(c.Param("ID"), 10, 64)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid bar ID"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid RevDrink ID"})
 		return
 	}
 
@@ -57,7 +57,7 @@ func (con *drinkReviewController) GetDrinkReviewById(c *gin.Context) {
 func (con *drinkReviewController) GetDrinkReviewsById(c *gin.Context) {
 	Id, err := strconv.ParseUint(c.Param("ID"), 10, 64)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid bar ID"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid RevDrink ID"})
 		return
 	}
 
@@ -72,7 +72,7 @@ func (con *drinkReviewController) GetDrinkReviewsById(c *gin.Context) {
 func (con *drinkReviewController) DeleteDrinkReviewById(c *gin.Context) {
 	Id, err := strconv.ParseUint(c.Param("ID"), 10, 64)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid bar ID"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid RevDrink ID"})
 		return
 	}
 

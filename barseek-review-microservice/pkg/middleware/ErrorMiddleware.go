@@ -15,6 +15,16 @@ func HandleError(c *gin.Context, err error) {
 		status = http.StatusBadRequest
 	case errors.NotFound:
 		status = http.StatusNotFound
+	case errors.NilUserId:
+		status = http.StatusBadRequest
+	case errors.NilRole:
+		status = http.StatusBadRequest
+	case errors.NotSaved:
+		status = http.StatusInternalServerError
+	case errors.WrongType:
+		status = http.StatusBadRequest
+	case errors.EmptyData:
+		status = http.StatusBadRequest
 	default:
 		status = http.StatusInternalServerError
 	}

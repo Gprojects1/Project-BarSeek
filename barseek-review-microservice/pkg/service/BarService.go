@@ -1,9 +1,9 @@
 package service
 
 import (
+	"barseek-review-microservice/pkg/errors"
 	"barseek-review-microservice/pkg/model"
 	"barseek-review-microservice/pkg/repository"
-	"errors"
 )
 
 type BarReviewService interface {
@@ -26,23 +26,47 @@ func NewBarReviewService(barRepo repository.BarReviewRepository) BarReviewServic
 func (s *barReviewService) AddBarReview(review *model.BarReview) (*model.BarReview, error) {
 
 	if review.Content == "" {
-		return nil, errors.New("review cannot be nil")
+		return nil, errors.EmptyData.Newf(errors.EmptyData.Message())
 	}
 	return s.barReviewRepo.Save(review)
 }
 
 func (s *barReviewService) GetBarReviewById(id uint) (*model.BarReview, error) {
-	return s.barReviewRepo.FindById(id)
+	rev, err := s.barReviewRepo.FindById(id)
+	if err != nil {
+		err = errors.Wrapf(err, errors.NotFound.Message())
+		err = errors.AddErrorContext(err, "id", "server sight error")
+		return nil, err
+	}
+	return rev, nil
 }
 
-func (s *barReviewService) GetBarReviewsByBarId(barId uint) ([]model.BarReview, error) {
-	return s.barReviewRepo.FindAllByEntityId(barId)
+func (s *barReviewService) GetBarReviewsByBarId(Id uint) ([]model.BarReview, error) {
+	rev, err := s.barReviewRepo.FindAllByEntityId(Id)
+	if err != nil {
+		err = errors.Wrapf(err, errors.NotFound.Message())
+		err = errors.AddErrorContext(err, "id", "server sight error")
+		return nil, err
+	}
+	return rev, nil
 }
 
-func (s *barReviewService) DeleteBarReviewById(id uint) error {
-	return s.barReviewRepo.DeleteById(id)
+func (s *barReviewService) DeleteBarReviewById(Id uint) error {
+	err := s.barReviewRepo.DeleteById(Id)
+	if err != nil {
+		err = errors.Wrapf(err, errors.NotFound.Message())
+		err = errors.AddErrorContext(err, "id", "server sight error")
+		return err
+	}
+	return nil
 }
 
-func (s *barReviewService) GetReviewsByUserId(id uint) ([]model.BarReview, error) {
-	return s.barReviewRepo.FindAllByUserId(id)
+func (s *barReviewService) GetReviewsByUserId(Id uint) ([]model.BarReview, error) {
+	rev, err := s.barReviewRepo.FindAllByEntityId(Id)
+	if err != nil {
+		err = errors.Wrapf(err, errors.NotFound.Message())
+		err = errors.AddErrorContext(err, "id", "server sight error")
+		return nil, err
+	}
+	return rev, nil
 }
