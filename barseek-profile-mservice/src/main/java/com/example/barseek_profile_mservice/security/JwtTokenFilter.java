@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -19,20 +20,19 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtTokenFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private final JwtService jwtService;
-
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request,
                                     @NonNull HttpServletResponse response,
                                     @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
 
-        String token = jwtService.extractToken(request);
-        if(token != null && jwtService.validateToken(token)) {
-            Authentication authentication = jwtService.createAuthentication(token);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        String userId = request.getHeader("X-User-Id");
+
+        if(userId == null || userId.isEmpty()) {
+            response.setStatus(HttpStatus.UNAUTHORIZED.value());
+            return;
         }
+
         filterChain.doFilter(request,response);
     }
 }

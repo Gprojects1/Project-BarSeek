@@ -8,6 +8,7 @@ import com.example.barseek_auth_mservice.exception.customExceptions.AuthExceptio
 import com.example.barseek_auth_mservice.exception.customExceptions.InvalidDataException;
 import com.example.barseek_auth_mservice.exception.customExceptions.UserNotFoundException;
 import com.example.barseek_auth_mservice.model.entity.User;
+import com.example.barseek_auth_mservice.model.type.Role;
 import com.example.barseek_auth_mservice.repository.UserRepository;
 import com.example.barseek_auth_mservice.security.JwtUtil;
 import jakarta.transaction.Transactional;
@@ -31,6 +32,16 @@ public class AuthService {
 
     @Transactional
     public AuthResponse register(RegisterRequest request) {
+
+        if(request.getEmail() == null || request.getEmail().isEmpty()) {
+            throw new InvalidDataException("Cant register without email");
+        }
+
+        if(request.getRole() == null) request.setRole(Role.USER);
+
+        if(request.getPassword() == null || request.getPassword().length() < 8) {
+            throw new InvalidDataException("Bad password");
+        }
 
         if(userService.findByEmail(request.getEmail()).isPresent()) {
             throw new InvalidDataException("User with this email already exists!");

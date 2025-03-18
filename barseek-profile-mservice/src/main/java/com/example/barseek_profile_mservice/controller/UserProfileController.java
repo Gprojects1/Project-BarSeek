@@ -32,28 +32,32 @@ public class UserProfileController {
 
     // | profile | //
     @GetMapping("/me")
-    public ResponseEntity<UserProfile> getMyProfile(@AuthenticationPrincipal UserPrincipal principal) {
+    public ResponseEntity<UserProfile> getMyProfile(@RequestHeader(value = "X-User-Id") String userId,
+                                                    @RequestHeader(value = "X-User-Roles") String roles
+    ) {
 
-        Long userId = Long.parseLong(principal.getUsername());
-        UserProfile profile = userProfileService.getUserProfile(userId);
+        Long id = Long.parseLong(userId);
+        UserProfile profile = userProfileService.getUserProfile(id);
         return ResponseEntity.ok(profile);
 
     }
 
     @PutMapping("/me")
-    public ResponseEntity<String> updateMyProfile(@AuthenticationPrincipal UserPrincipal principal,
+    public ResponseEntity<String> updateMyProfile(@RequestHeader(value = "X-User-Id") String userId,
+                                                  @RequestHeader(value = "X-User-Roles") String roles,
                                                   @RequestBody UpdateProfileRequest updateProfileRequest
     ) {
-        Long userId = Long.parseLong(principal.getUsername());
-        UserProfile newProfile = userProfileService.updateUserProfile(userId,updateProfileRequest);
+        Long id = Long.parseLong(userId);
+        UserProfile newProfile = userProfileService.updateUserProfile(id,updateProfileRequest);
         return ResponseEntity.ok("Profile updated, id : " + newProfile.getId());
     }
 
     @DeleteMapping("/me")
-    public ResponseEntity<String> deleteMyProfile(@AuthenticationPrincipal UserPrincipal principal) {
+    public ResponseEntity<String> deleteMyProfile(@RequestHeader(value = "X-User-Id") String userId,
+                                                  @RequestHeader(value = "X-User-Roles") String roles) {
 
-        Long userId = Long.parseLong(principal.getUsername());
-        userProfileService.deleteUserProfile(userId);
+        Long id = Long.parseLong(userId);
+        userProfileService.deleteUserProfile(id);
         return ResponseEntity.ok("profile was deleted");
 
     }
@@ -61,18 +65,21 @@ public class UserProfileController {
     // | avatar | //
 
     @DeleteMapping("/me/avatar")
-    public ResponseEntity<String> deleteMyAvatar(@AuthenticationPrincipal UserPrincipal principal) {
-        Long userId = Long.parseLong(principal.getUsername());
-        userProfileService.deleteAvatar(userId);
+    public ResponseEntity<String> deleteMyAvatar(@RequestHeader(value = "X-User-Id") String userId,
+                                                 @RequestHeader(value = "X-User-Roles") String roles
+    ) {
+        Long id = Long.parseLong(userId);
+        userProfileService.deleteAvatar(id);
         return ResponseEntity.ok("avatar was successfully deleted");
     }
 
     @PostMapping("/me/avatar")
-    public ResponseEntity<String> uploadMyAvatar(@AuthenticationPrincipal UserPrincipal principal,
+    public ResponseEntity<String> uploadMyAvatar(@RequestHeader(value = "X-User-Id") String userId,
+                                                 @RequestHeader(value = "X-User-Roles") String roles,
                                                  @RequestParam ("file") MultipartFile file
     ) {
-        Long userId = Long.parseLong(principal.getUsername());
-        String filePath = userProfileService.uploadAvatar(userId,file);
+        Long id = Long.parseLong(userId);
+        String filePath = userProfileService.uploadAvatar(id,file);
         return ResponseEntity.ok("avatar was uploaded, path : " + filePath);
     }
 

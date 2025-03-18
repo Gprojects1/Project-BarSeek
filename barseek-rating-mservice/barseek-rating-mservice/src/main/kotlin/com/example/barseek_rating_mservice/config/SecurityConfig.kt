@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity
 class SecurityConfig(private val jwtTokenFilter: JwtTokenFilter) {
 
-    private val allowedURLS : Array<String> = arrayOf("/h2-console/**")
+    private val allowedURLS : Array<String> = arrayOf("/h2-console/**","/rating-service-api/v1/ratings")
 
     @Bean
     fun securityFilterChain(http : HttpSecurity) : SecurityFilterChain {

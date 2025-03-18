@@ -1,7 +1,6 @@
 package com.example.barseek_bar_mservice.config;
 
 import com.example.barseek_bar_mservice.security.JwtTokenFilter;
-import com.example.barseek_bar_mservice.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +24,7 @@ public class SecurityConfig {
 
     private final JwtTokenFilter jwtTokenFilter;
 
-    private final String[] ALLOWED_URLS = {"/h2-console/**","/hello/**","/bar-service-api/v1/bars/**"};
+    private final String[] ALLOWED_URLS = {"/h2-console/**","/bar-service-api/v1/bars/**", "/drink-service-api/v1/**"};
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
