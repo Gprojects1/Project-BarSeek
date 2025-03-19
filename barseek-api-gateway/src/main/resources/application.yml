@@ -1,5 +1,13 @@
 server:
   port: 8085
+  netty:
+    max-header-size: 16KB
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    com.example.barseek_api_gateway.security.JwtAuthFilter: INFO
+
 
 spring:
   autoconfigure:
@@ -19,10 +27,12 @@ spring:
         enabled: false
   cloud:
     gateway:
+      default-filters:
+        - PreserveHostHeader
       routes:
 
         - id: auth-service
-          uri: lb://barseek-auth-mservice
+          uri: lb://BARSEEK-AUTH-MSERVICE
           predicates:
             - Path=/auth/**
           filters:
@@ -34,7 +44,7 @@ spring:
                 fallbackUri: forward:/fallback/auth
 
         - id: bar-service
-          uri: lb://barseek-bar-mservice
+          uri: lb://BARSEEK-BAR-MSERVICE
           predicates:
             - Path=/bars/**
           filters:
@@ -53,10 +63,10 @@ spring:
           filters:
             - StripPrefix=1
 
-            - name: CircuitBreaker
-              args:
-                name: ratingServiceCircuitBreaker
-                fallbackUri: forward:/fallback/rating
+#            - name: CircuitBreaker
+#              args:
+#                name: ratingServiceCircuitBreaker
+#                fallbackUri: forward:/fallback/rating
 
         - id: profile-service
           uri: lb://barseek-profile-mservice
@@ -65,10 +75,10 @@ spring:
           filters:
             - StripPrefix=1
 
-            - name: CircuitBreaker
-              args:
-                name: profileServiceCircuitBreaker
-                fallbackUri: forward:/fallback/profile
+#            - name: CircuitBreaker
+#              args:
+#                name: profileServiceCircuitBreaker
+#                fallbackUri: forward:/fallback/profile
 
 
 eureka:

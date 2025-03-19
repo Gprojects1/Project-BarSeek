@@ -39,7 +39,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(() -> "ROLE_" + role);
+        return Collections.singletonList(() -> "" + role);
     }
 
     @Override
