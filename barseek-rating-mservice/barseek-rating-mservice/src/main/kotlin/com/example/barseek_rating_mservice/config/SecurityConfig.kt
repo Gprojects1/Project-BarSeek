@@ -1,6 +1,6 @@
 package com.example.barseek_rating_mservice.config
 
-import com.example.barseek_rating_mservice.security.JwtTokenFilter
+import com.example.barseek_rating_mservice.security.RequestFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity
@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-class SecurityConfig(private val jwtTokenFilter: JwtTokenFilter) {
+class SecurityConfig(private val requestFilter: RequestFilter) {
 
     private val allowedURLS : Array<String> = arrayOf("/h2-console/**","/rating-service-api/v1/ratings")
 
@@ -33,7 +33,7 @@ class SecurityConfig(private val jwtTokenFilter: JwtTokenFilter) {
                     frameOptions.sameOrigin()
                 }
             }
-            .addFilterBefore(jwtTokenFilter,UsernamePasswordAuthenticationFilter :: class.java)
+            .addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter :: class.java)
         
         return http.build();
     }

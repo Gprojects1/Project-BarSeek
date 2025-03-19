@@ -3,12 +3,10 @@ package com.example.barseek_profile_mservice.controller;
 
 import com.example.barseek_profile_mservice.dto.UpdateProfileRequest;
 import com.example.barseek_profile_mservice.model.entity.UserProfile;
-import com.example.barseek_profile_mservice.security.UserPrincipal;
 import com.example.barseek_profile_mservice.service.UserProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,7 +33,6 @@ public class UserProfileController {
     public ResponseEntity<UserProfile> getMyProfile(@RequestHeader(value = "X-User-Id") String userId,
                                                     @RequestHeader(value = "X-User-Roles") String roles
     ) {
-
         Long id = Long.parseLong(userId);
         UserProfile profile = userProfileService.getUserProfile(id);
         return ResponseEntity.ok(profile);
@@ -81,6 +78,13 @@ public class UserProfileController {
         Long id = Long.parseLong(userId);
         String filePath = userProfileService.uploadAvatar(id,file);
         return ResponseEntity.ok("avatar was uploaded, path : " + filePath);
+    }
+
+    @GetMapping("/me/avatar")
+    public ResponseEntity<MultipartFile> getMyAvatar(@RequestHeader(value = "X-User-Id") String userId,
+                                                     @RequestHeader(value = "X-User-Roles") String roles
+    ) {
+        return ResponseEntity.ok(null);
     }
 
 }

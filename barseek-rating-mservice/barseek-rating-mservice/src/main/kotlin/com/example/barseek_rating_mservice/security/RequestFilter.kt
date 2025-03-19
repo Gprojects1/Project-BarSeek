@@ -9,7 +9,7 @@ import org.springframework.web.filter.OncePerRequestFilter
 
 
 @Component
-class JwtTokenFilter : OncePerRequestFilter() {
+class RequestFilter : OncePerRequestFilter() {
 
     override fun doFilterInternal(
         request: HttpServletRequest,

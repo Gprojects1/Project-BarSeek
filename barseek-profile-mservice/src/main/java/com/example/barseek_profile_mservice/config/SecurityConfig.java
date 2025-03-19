@@ -1,7 +1,7 @@
 package com.example.barseek_profile_mservice.config;
 
 
-import com.example.barseek_profile_mservice.security.JwtTokenFilter;
+import com.example.barseek_profile_mservice.security.RequestFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     @Autowired
-    private final JwtTokenFilter jwtTokenFilter;
+    private final RequestFilter requestFilter;
 
     private final String[] ALLOWED_URLS = {"/h2-console/**"};
 
@@ -35,7 +35,7 @@ public class SecurityConfig {
                         .requestMatchers(ALLOWED_URLS).permitAll()
                         .anyRequest().authenticated())
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
-                .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity.build();
     }

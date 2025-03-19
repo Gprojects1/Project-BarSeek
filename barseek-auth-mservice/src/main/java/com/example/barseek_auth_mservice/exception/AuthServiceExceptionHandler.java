@@ -3,6 +3,7 @@ package com.example.barseek_auth_mservice.exception;
 
 import com.example.barseek_auth_mservice.exception.customExceptions.AuthException;
 import com.example.barseek_auth_mservice.exception.customExceptions.InvalidDataException;
+import com.example.barseek_auth_mservice.exception.customExceptions.InvalidPasswordException;
 import com.example.barseek_auth_mservice.exception.customExceptions.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,11 @@ public class AuthServiceExceptionHandler {
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<String> handleUserNotFound(UserNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(InvalidPasswordException.class)
+    public ResponseEntity<String> handleInvalidPassword(InvalidPasswordException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
     @ExceptionHandler(InvalidDataException.class)
