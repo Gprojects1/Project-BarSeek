@@ -7,28 +7,11 @@
     <list default="true" id="b36ec070-a657-4f49-b774-5d27547f95b7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/barseek_api_gateway/BarseekApiGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/barseek_api_gateway/BarseekApiGatewayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/barseek_api_gateway/config/SecConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/barseek_api_gateway/config/SecConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/barseek_api_gateway/security/JwtAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/barseek_api_gateway/security/JwtAuthFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-auth-mservice/src/main/java/com/example/barseek_auth_mservice/model/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-auth-mservice/src/main/java/com/example/barseek_auth_mservice/model/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-auth-mservice/src/main/java/com/example/barseek_auth_mservice/model/type/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-auth-mservice/src/main/java/com/example/barseek_auth_mservice/model/type/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-auth-mservice/src/main/java/com/example/barseek_auth_mservice/security/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-auth-mservice/src/main/java/com/example/barseek_auth_mservice/security/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-auth-mservice/src/main/java/com/example/barseek_auth_mservice/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-auth-mservice/src/main/java/com/example/barseek_auth_mservice/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-auth-mservice/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-auth-mservice/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/java/com/example/barseek_bar_mservice/BarseekBarMserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/java/com/example/barseek_bar_mservice/BarseekBarMserviceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../barseek-bar-mservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-bar-mservice/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/java/com/example/barseek_bar_mservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/java/com/example/barseek_bar_mservice/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/java/com/example/barseek_bar_mservice/controller/BarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/java/com/example/barseek_bar_mservice/controller/BarController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/java/com/example/barseek_bar_mservice/controller/DrinkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/java/com/example/barseek_bar_mservice/controller/DrinkController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/java/com/example/barseek_bar_mservice/exception/BarServiceExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/java/com/example/barseek_bar_mservice/exception/BarServiceExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/java/com/example/barseek_bar_mservice/security/JwtTokenFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/java/com/example/barseek_bar_mservice/security/JwtTokenFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/java/com/example/barseek_bar_mservice/service/JwtService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-bar-mservice/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barseek-profile-mservice/src/main/java/com/example/barseek_profile_mservice/controller/UserProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-profile-mservice/src/main/java/com/example/barseek_profile_mservice/controller/UserProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-profile-mservice/src/main/java/com/example/barseek_profile_mservice/security/JwtTokenFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-profile-mservice/src/main/java/com/example/barseek_profile_mservice/security/JwtTokenFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-rating-mservice/barseek-rating-mservice/src/main/kotlin/com/example/barseek_rating_mservice/config/SecurityConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-rating-mservice/barseek-rating-mservice/src/main/kotlin/com/example/barseek_rating_mservice/config/SecurityConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-rating-mservice/barseek-rating-mservice/src/main/kotlin/com/example/barseek_rating_mservice/security/JwtTokenFilter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../barseek-rating-mservice/barseek-rating-mservice/src/main/kotlin/com/example/barseek_rating_mservice/security/JwtTokenFilter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-rating-mservice/barseek-rating-mservice/src/main/kotlin/com/example/barseek_rating_mservice/security/UserPrincipal.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barseek-rating-mservice/barseek-rating-mservice/src/main/kotlin/com/example/barseek_rating_mservice/service/JwtService.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,17 +46,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.BarseekApiGatewayApplication.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "non__zero__trust",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/79258/accounting-sys"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.BarseekApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;non__zero__trust&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/79258/accounting-sys&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

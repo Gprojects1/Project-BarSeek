@@ -4,6 +4,7 @@ package com.example.barseek_profile_mservice.controller;
 import com.example.barseek_profile_mservice.dto.UpdateProfileRequest;
 import com.example.barseek_profile_mservice.model.entity.UserProfile;
 import com.example.barseek_profile_mservice.service.UserProfileService;
+import jakarta.inject.Singleton;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
