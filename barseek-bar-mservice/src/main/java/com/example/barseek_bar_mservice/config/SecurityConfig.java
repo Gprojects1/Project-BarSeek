@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final RequestFilter requestFilterFilter;
+    private final RequestFilter requestFilter;
 
     private final String[] ALLOWED_URLS = {"/h2-console/**","/bar-service-api/v1/bars/**", "/drink-service-api/v1/**"};
 
@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(ALLOWED_URLS).permitAll()
                         .anyRequest().authenticated())
-                .addFilterBefore(requestFilterFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
 

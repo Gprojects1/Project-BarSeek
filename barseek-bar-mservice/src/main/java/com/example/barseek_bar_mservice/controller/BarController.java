@@ -5,12 +5,10 @@ import com.example.barseek_bar_mservice.dto.UpdateBarRequest;
 import com.example.barseek_bar_mservice.exception.customExceptions.UnauthorizedAccessException;
 import com.example.barseek_bar_mservice.model.entity.Bar;
 import com.example.barseek_bar_mservice.model.entity.Drink;
-import com.example.barseek_bar_mservice.security.UserPrincipal;
 import com.example.barseek_bar_mservice.service.BarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +25,6 @@ public class BarController {
                                          @RequestHeader(value = "X-User-Id") String userId,
                                          @RequestHeader(value = "X-User-Roles") String roles
     ) {
-
             if(!(roles.contains("bar"))) throw new UnauthorizedAccessException("User is not a bar owner!");
 
             Long ownerId = Long.parseLong(userId);

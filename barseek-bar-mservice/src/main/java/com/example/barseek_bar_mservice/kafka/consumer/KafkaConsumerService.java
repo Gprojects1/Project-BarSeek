@@ -2,7 +2,6 @@ package com.example.barseek_bar_mservice.kafka.consumer;
 
 import com.example.barseek_bar_mservice.kafka.c_events.UserCreatedEvent;
 import com.example.barseek_bar_mservice.model.entity.Owner;
-import com.example.barseek_bar_mservice.service.BarService;
 import com.example.barseek_bar_mservice.service.OwnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaHandler;

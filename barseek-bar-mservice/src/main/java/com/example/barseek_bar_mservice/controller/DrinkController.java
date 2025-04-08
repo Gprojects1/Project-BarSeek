@@ -5,17 +5,13 @@ import com.example.barseek_bar_mservice.dto.UpdateDrinkRequest;
 import com.example.barseek_bar_mservice.exception.customExceptions.UnauthorizedAccessException;
 import com.example.barseek_bar_mservice.model.entity.Bar;
 import com.example.barseek_bar_mservice.model.entity.Drink;
-import com.example.barseek_bar_mservice.security.UserPrincipal;
 import com.example.barseek_bar_mservice.service.DrinkService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor

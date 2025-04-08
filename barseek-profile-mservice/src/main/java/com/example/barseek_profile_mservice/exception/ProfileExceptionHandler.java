@@ -1,10 +1,7 @@
 package com.example.barseek_profile_mservice.exception;
 
 
-import com.example.barseek_profile_mservice.exception.customExceptions.AvatarNotFoundException;
-import com.example.barseek_profile_mservice.exception.customExceptions.InvalidDataException;
-import com.example.barseek_profile_mservice.exception.customExceptions.ProfileNotFoundException;
-import com.example.barseek_profile_mservice.exception.customExceptions.UnauthorizedAccessException;
+import com.example.barseek_profile_mservice.exception.customExceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -31,6 +28,11 @@ public class ProfileExceptionHandler {
     @ExceptionHandler(AvatarNotFoundException.class)
     public ResponseEntity<String> handleAvatarNotFound(AvatarNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(FileProcessingFailedException.class)
+    public ResponseEntity<String> handleFileProccesingFailed(FileProcessingFailedException ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
