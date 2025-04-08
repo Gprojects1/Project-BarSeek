@@ -15,8 +15,6 @@ import com.example.barseek_profile_mservice.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,8 +31,6 @@ public class UserProfileService {
     private final AvatarService avatarService;
     private final KafkaProducerService kafkaProducerService;
 
-    @Value("${app.avatar.upload-dir}")
-    private String uploadDir;
 
     @Transactional
     public void createProfile(UserProfile profile) {
@@ -106,14 +102,10 @@ public class UserProfileService {
         UserProfile profile = getUserProfile(userId);
 
         if(profile.getAvatar() == null) {
-            throw new AvatarNotFoundException("U have no avatar");
+            throw new AvatarNotFoundException("You have no avatar");
         }
 
-        try {
-            avatarService.deleteAvatarFile(profile.getAvatar().getFilePath());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        avatarService.deleteAvatarFile(Paths.get(profile.getAvatar().getFilePath()));
 
         Long avatarId = profile.getAvatar().getId();
         avatarService.deleteAvatarById(avatarId);
@@ -131,15 +123,7 @@ public class UserProfileService {
         UserProfile profile = getUserProfile(userId);
         if(profile.getAvatar() != null) deleteAvatar(userId);
 
-        String fileName = avatarService.generateAvatarFileName(file.getOriginalFilename());
-        Path filePath = Paths.get(uploadDir,fileName);
-
-        try {
-            Files.createDirectories(filePath.getParent());
-            Files.copy(file.getInputStream(),filePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Path filePath = avatarService.downloadAvatarFile(file);
 
         Avatar newAvatar = Avatar.builder()
                 .userProfile(profile)
@@ -148,7 +132,12 @@ public class UserProfileService {
         avatarService.addNew(newAvatar);
 
         profile.setAvatar(newAvatar);
-        userRepository.save(profile);
+
+        try {
+            userRepository.save(profile);
+        } catch (Exception ex) {
+            avatarService.deleteAvatarFile(filePath);
+        }
 
         return filePath.toString();
     }
