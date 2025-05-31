@@ -34,7 +34,7 @@ func (s *drinkReviewService) GetDrinkReviewById(id uint) (*model.DrinkReview, er
 	rev, err := s.drinkReviewRepo.FindById(id)
 	if err != nil {
 		err = errors.Wrapf(err, errors.NotFound.Message())
-		err = errors.AddErrorContext(err, "id", "server sight error")
+		err = errors.AddErrorContext(err, "id", "error in processing request information")
 		return nil, err
 	}
 	return rev, nil
@@ -44,7 +44,7 @@ func (s *drinkReviewService) GetDrinkReviewsByDrinkId(Id uint) ([]model.DrinkRev
 	rev, err := s.drinkReviewRepo.FindAllByEntityId(Id)
 	if err != nil {
 		err = errors.Wrapf(err, errors.NotFound.Message())
-		err = errors.AddErrorContext(err, "id", "server sight error")
+		err = errors.AddErrorContext(err, "id", "error in processing request information")
 		return nil, err
 	}
 	return rev, nil
@@ -54,7 +54,7 @@ func (s *drinkReviewService) DeleteDrinkReviewById(Id uint) error {
 	err := s.drinkReviewRepo.DeleteById(Id)
 	if err != nil {
 		err = errors.Wrapf(err, errors.NotFound.Message())
-		err = errors.AddErrorContext(err, "id", "server sight error")
+		err = errors.AddErrorContext(err, "id", "error in processing request information")
 		return err
 	}
 	return nil

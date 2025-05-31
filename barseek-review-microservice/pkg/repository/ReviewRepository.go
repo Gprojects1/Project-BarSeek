@@ -28,7 +28,7 @@ func (r *reviewRepository[T]) Save(review *T) (*T, error) {
 		switch err {
 		case gorm.ErrRecordNotFound:
 			err = errors.Wrapf(err, errors.NotSaved.Message())
-			err = errors.AddErrorContext(err, "id", "repo sight error")
+			err = errors.AddErrorContext(err, "id", "can't save information to repository")
 		default:
 			err = errors.Newf(errors.NotSaved.Message())
 		}
@@ -43,7 +43,7 @@ func (r *reviewRepository[T]) FindById(id uint) (*T, error) {
 		switch err {
 		case gorm.ErrRecordNotFound:
 			err = errors.Wrapf(err, errors.NotFound.Message())
-			err = errors.AddErrorContext(err, "id", "repo sight error")
+			err = errors.AddErrorContext(err, "id", "can't get information from repository")
 		default:
 			err = errors.Newf(errors.NotFound.Message())
 		}
@@ -69,7 +69,7 @@ func (r *reviewRepository[T]) FindAllByEntityId(entityId uint) ([]T, error) {
 		switch err {
 		case gorm.ErrRecordNotFound:
 			err = errors.Wrapf(err, errors.NotFound.Message())
-			err = errors.AddErrorContext(err, "id", "repo sight error")
+			err = errors.AddErrorContext(err, "id", "can't get information from repository")
 		default:
 			err = errors.Newf(errors.NotFound.Message())
 		}
@@ -88,7 +88,7 @@ func (r *reviewRepository[T]) FindAllByUserId(id uint) ([]T, error) {
 		switch err {
 		case gorm.ErrRecordNotFound:
 			err = errors.Wrapf(err, errors.NotFound.Message())
-			err = errors.AddErrorContext(err, "id", "repo sight error")
+			err = errors.AddErrorContext(err, "id", "can't get information from repository")
 		default:
 			err = errors.Newf(errors.NotFound.Message())
 		}

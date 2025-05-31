@@ -35,7 +35,7 @@ func (s *barReviewService) GetBarReviewById(id uint) (*model.BarReview, error) {
 	rev, err := s.barReviewRepo.FindById(id)
 	if err != nil {
 		err = errors.Wrapf(err, errors.NotFound.Message())
-		err = errors.AddErrorContext(err, "id", "server sight error")
+		err = errors.AddErrorContext(err, "id", "error in processing request information")
 		return nil, err
 	}
 	return rev, nil
@@ -45,7 +45,7 @@ func (s *barReviewService) GetBarReviewsByBarId(Id uint) ([]model.BarReview, err
 	rev, err := s.barReviewRepo.FindAllByEntityId(Id)
 	if err != nil {
 		err = errors.Wrapf(err, errors.NotFound.Message())
-		err = errors.AddErrorContext(err, "id", "server sight error")
+		err = errors.AddErrorContext(err, "id", "error in processing request information")
 		return nil, err
 	}
 	return rev, nil
@@ -55,7 +55,7 @@ func (s *barReviewService) DeleteBarReviewById(Id uint) error {
 	err := s.barReviewRepo.DeleteById(Id)
 	if err != nil {
 		err = errors.Wrapf(err, errors.NotFound.Message())
-		err = errors.AddErrorContext(err, "id", "server sight error")
+		err = errors.AddErrorContext(err, "id", "error in processing request information")
 		return err
 	}
 	return nil
@@ -65,7 +65,7 @@ func (s *barReviewService) GetReviewsByUserId(Id uint) ([]model.BarReview, error
 	rev, err := s.barReviewRepo.FindAllByEntityId(Id)
 	if err != nil {
 		err = errors.Wrapf(err, errors.NotFound.Message())
-		err = errors.AddErrorContext(err, "id", "server sight error")
+		err = errors.AddErrorContext(err, "id", "error in processing request information")
 		return nil, err
 	}
 	return rev, nil

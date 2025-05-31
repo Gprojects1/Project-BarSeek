@@ -83,20 +83,20 @@ func GetType(err error) ErrorType {
 func (t ErrorType) Message() string {
 	switch t {
 	case BadRequest:
-		return "Bad Request: The request could not be understood or was missing required parameters."
+		return "Invalid request. Please check your input and try again."
 	case NotFound:
-		return "Not Found: The requested resource could not be found."
+		return "The item you requested could not be found."
 	case NilUserId:
-		return "Nil User ID: User ID cannot be nil."
+		return "User identification is missing. Please log in and try again."
 	case NilRole:
-		return "Nil Role: Role cannot be nil."
+		return "Role information is required to complete this action."
 	case NotSaved:
-		return "Can not save to db."
+		return "We couldn't save your changes. Please try again later."
 	case WrongType:
-		return "Wrong data type delivered."
+		return "The data format is incorrect. Please check and resubmit."
 	case EmptyData:
-		return "Some data is not defined."
+		return "Required information is missing. Please fill all necessary fields."
 	default:
-		return "Unknown error occurred."
+		return "An unexpected error occurred. Our team has been notified."
 	}
 }
