@@ -64,7 +64,7 @@ func (s *drinkReviewService) GetReviewsByUserId(Id uint) ([]model.DrinkReview, e
 	rev, err := s.drinkReviewRepo.FindAllByEntityId(Id)
 	if err != nil {
 		err = errors.Wrapf(err, errors.NotFound.Message())
-		err = errors.AddErrorContext(err, "id", "server sight error")
+		err = errors.AddErrorContext(err, "id", "error in processing request information")
 		return nil, err
 	}
 	return rev, nil
